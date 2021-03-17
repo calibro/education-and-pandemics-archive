@@ -2,6 +2,7 @@ import './App.sass';
 import {Component} from 'react'
 import HomeView from './views/HomeView'
 import ResourceView from './views/ResourceView'
+import qs from 'qs'
 
 import Airtable from 'airtable'
 import logo from './assets/logo.svg';
@@ -12,6 +13,8 @@ import {
   Route,
 	Link
 } from "react-router-dom";
+
+import { QueryParamProvider } from 'use-query-params';
 
 class App extends Component {
 	state = {
@@ -71,23 +74,25 @@ class App extends Component {
   render() {
     return (
 			<Router>
-				<div className="App">
-					<div className="header">
-						<Link to="/"><img src={logo} alt="logo"/></Link>
-					</div>
-					<div className="app-content">
-						<Switch>
-							<Route exact path="/resource/:resourceId" render={(props)=>{
-								return <ResourceView resourceId={props.match.params.resourceId}/>
-							}} />
-							<Route path="/">
-								<HomeView archiveItems={this.state.archiveItems} filters={this.state}></HomeView>
-							</Route>
-						</Switch>
-					</div>
-				</div>
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <div className="App">
+            <div className="header">
+              <Link to="/"><img src={logo} alt="logo"/></Link>
+            </div>
+            <div className="app-content">
+              <Switch>
+                <Route exact path="/resource/:resourceId" render={(props)=>{
+                  return <ResourceView resourceId={props.match.params.resourceId}/>
+                }} />
+                <Route path="/" render={(props) => {
+                    let urlParams = qs.parse(props.location.search.slice(1))
+                    return  <HomeView archiveItems={this.state.archiveItems} filters={this.state} params={urlParams}></HomeView>
+                  }}/>
+              </Switch>
+            </div>
+          </div>
+        </QueryParamProvider>
 			</Router>
-
     );
   }
 }
