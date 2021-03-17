@@ -8,7 +8,7 @@ import Airtable from 'airtable'
 import logo from './assets/logo.svg';
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
 	Link
