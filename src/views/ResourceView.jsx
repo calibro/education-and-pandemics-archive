@@ -1,6 +1,8 @@
 import {Component} from 'react'
 import './ResourceView.sass';
 import Airtable from 'airtable'
+import {Spinner} from 'react-bootstrap'
+import * as embedUtils from '../utils/embed'
 
 export default class ResourceView extends Component {
   state = {
@@ -11,6 +13,7 @@ export default class ResourceView extends Component {
 		var base = new Airtable({
 			apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
 		}).base('appyRkLfkVtG84rMU');
+
     base('Data Sample').find(this.props.resourceId, function(err, record) {
       if (err) { console.error(err); return; }
       self.setState({
@@ -18,8 +21,61 @@ export default class ResourceView extends Component {
       })
     })
   }
+  generateEmbedCode () {
+    let code = <div></div>
+    let source
+    try {
+      source = new URL(this.state.resource.fields['URL'])
+    } catch (err) {
+      code = <div>No url is defined</div>
+    }
+    if (source){
+      // YouTube
+      if (source.hostname.includes('youtu')) {
+        let youtubeId = embedUtils.getYoutubeId(source.href)
+        code = <iframe width="640" height="360"  title="content" src={'https://www.youtube.com/embed/' + youtubeId} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      }
+
+      // VIMEO
+      else if (source.hostname.includes('vimeo')) {
+        let vimeoId = embedUtils.getVimeoId(source.href)
+        code = <iframe width="640" height="360" title="content" src={"https://player.vimeo.com/video/" + vimeoId} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      }
+
+      // Archive
+      else if (source.hostname.includes('archive.org')) {
+        let archiveUrl = embedUtils.getArchiveURL(source.href)
+        code = <iframe width="640" height="360" title="content" src={archiveUrl} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      }
+
+      // Spotify
+      else if (source.hostname.includes('spotify')) {
+        let spotifyUrl = embedUtils.getSpotifyUrl(source.href)
+        code = <iframe width="640" height="360" title="content" src={spotifyUrl} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      }
+      // Soundcloud
+      else if (source.hostname.includes('soundcloud')) {
+        code = <div>Soundcloud - work in progress</div>
+      }
+    }
+
+    return code
+  }
   resourceMedia() {
-    return <img src={this.state.resource.fields['Attachments'][0].url} alt={this.state.resource.fields['Title ID']}></img>
+    let resourceContent = <span>No item format defined</span>
+    let format = this.state.resource.fields['item_format']
+    if (format === 'Website') {
+      resourceContent = <img src={this.state.resource.fields['Attachments'][0].url} alt={this.state.resource.fields['Title ID']}></img>
+    } 
+    else if (format === 'Image') {
+      // Here maybe a gallery?
+      resourceContent = <img src={this.state.resource.fields['Attachments'][0].url} alt={this.state.resource.fields['Title ID']}></img>
+    }
+    else if (format === 'Embed') {
+      // Here maybe a gallery?
+      resourceContent = this.generateEmbedCode()
+    }
+    return resourceContent
   }
   resourceInfo() {
     return <div className="resource-sideinfo">
@@ -39,6 +95,10 @@ export default class ResourceView extends Component {
                   }
                 )}
               </div>
+              {this.state.resource.fields['URL'] && <div className="resource-source">
+                <a href={this.state.resource.fields['URL']}>GO TO THE SOURCE</a>
+              </div>
+              }
 
           </div>
   }
@@ -54,6 +114,6 @@ export default class ResourceView extends Component {
         </div>
       </div>)
     :
-    (<div>Loading</div>)
+    (<div className="loading"><Spinner animation="border" />Loading resource</div>)
   }
 }

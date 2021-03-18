@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import './HomeView.sass';
-import {Container, Row, Col} from 'react-bootstrap'
+import {Container, Row, Col, Spinner} from 'react-bootstrap'
 import ResourceCard from '../components/ResourceCard'
 import FilterSidebar from '../components/FilterSidebar'
 import Airtable from 'airtable'
@@ -54,7 +54,7 @@ export default class HomeView extends Component {
             </div>
             <div className="main-content">
               {this.state.loading ? 
-                <div>Loading</div>
+                <div className="loading"><Spinner animation="border" />Loading resources</div>
                   :
                 <Container>
                   <Row xs={2} md={3} lg={4}>

@@ -24,12 +24,14 @@
         line-height: 25px
         font-weight: 400
         padding: 12px
-      .resource-desc
+      .resource-desc,
         border-bottom: 1px solid #000000
         padding: 12px
       .meta-row
-        border-bottom: 1px dotted #000000
         display: flex
+        border-bottom: 1px dotted #000000
+        &:last-child
+          border-bottom: 1px solid #000000
         .meta-title
           padding: 12px
           color: 575449
@@ -39,3 +41,13 @@
           border-right: 1px solid #000
         .meta-value
           padding: 12px
+      .resource-source
+        a
+          display: flex
+          height: 50px
+          justify-content: center
+          align-items: center
+          color: #000000
+          text-decoration: none
+          &:hover
+            text-decoration: underline
