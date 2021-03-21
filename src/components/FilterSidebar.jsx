@@ -70,11 +70,11 @@ export default class ResourceCard extends Component {
       case 'tags':
         return <FilterBlock blockTitle="Tags" filterName="Tags" labelBy="Tag" filterItems={this.props.filters.tags}></FilterBlock>
       case 'languages':
-        return <FilterBlock blockTitle="Languages" filterName="Languages" labelBy="Language" filterItems={this.props.filters.languages}></FilterBlock>
+        return <FilterBlock blockTitle="Languages" filterName="Language" labelBy="Language" filterItems={this.props.filters.languages}></FilterBlock>
       case 'countries':
-        return <FilterBlock blockTitle="Countries" filterName="Countries" labelBy="Country" filterItems={this.props.filters.countries}></FilterBlock>
+        return <FilterBlock blockTitle="Countries" filterName="Country" labelBy="Country" filterItems={this.props.filters.countries}></FilterBlock>
       case 'cities':
-        return <FilterBlock blockTitle="Cities" filterName="Cities" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
+        return <FilterBlock blockTitle="Cities" filterName="City" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
       default:
         return <div></div>
     }

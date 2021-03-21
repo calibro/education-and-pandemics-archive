@@ -9,4 +9,39 @@
 .main-content
   overflow: auto
   max-height: calc(100vh - 50px)
-  padding: 20px
+  padding: 30px
+  width: 100%
+
+  .content-top-bar
+    display: flex
+    color: #575449
+    align-items: center
+    width: 100%
+    margin-bottom: 15px
+    .results-count
+      font-size: 16px
+    .results-view-type
+      margin-left: auto
+      display: flex
+      .view-type
+        width: 24px
+        height: 24px
+        cursor: pointer
+        border: 1px solid
+        margin: 5px
+        &.active
+          background: #B87333
+    .results-seach
+        margin-left: 10px
+  .content-filters-summary
+    display: flex
+    margin-bottom: 15px
+    .filter-recap-item
+      cursor: pointer
+      font-size: 16px
+      line-height: 16px
+      border-radius: 12px
+      background: #B87333
+      padding: 4px 8px
+      color: #FBFAF7
+      margin-right: 6px

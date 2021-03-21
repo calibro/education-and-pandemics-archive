@@ -1,14 +1,19 @@
 import {Component} from 'react'
 import './HomeView.sass';
-import {Container, Row, Col, Spinner} from 'react-bootstrap'
-import ResourceCard from '../components/ResourceCard'
+import {Spinner} from 'react-bootstrap'
+import ResourcesGrid from '../components/ResourcesGrid'
+import ResourcesList from '../components/ResourcesList'
+import ResourcesMap from '../components/ResourcesMap'
+
 import FilterSidebar from '../components/FilterSidebar'
+import CurrentFiltersRecap from '../components/CurrentFiltersRecap'
 import Airtable from 'airtable'
 
 export default class HomeView extends Component {
   state = {
 		archiveItems: [],
-    loading: false
+    loading: false,
+    currentViewType: 'grid'
 	}
   componentDidMount() {
     this.fetchData()
@@ -17,6 +22,11 @@ export default class HomeView extends Component {
     if (JSON.stringify(prevProps.params) !== JSON.stringify(this.props.params)) {
       this.fetchData()
     }
+  }
+  setCurrentViewType(type) {
+    this.setState({
+      currentViewType: type
+    })
   }
   fetchData () {
     var self = this
@@ -31,7 +41,7 @@ export default class HomeView extends Component {
 
     this.props.params && Object.keys(this.props.params).forEach(paramKey => {
       let filterVal = Array.isArray(this.props.params[paramKey]) ? this.props.params[paramKey] : [this.props.params[paramKey]]
-      formulas.push('OR(' + filterVal.map(v => '{' + paramKey + '}="'+v+'"').join(', ') +')')
+      formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
     })
     let formula = formulas.length > 0 ? 'AND(' + formulas.join(', ') +')' : ''
 
@@ -47,24 +57,47 @@ export default class HomeView extends Component {
 				});
     })
   }
+  renderParamsRecap () {
+    return Object.keys(this.props.params).map(filterKey =>
+      <CurrentFiltersRecap filterKey={filterKey}></CurrentFiltersRecap>
+    )
+  }
+  renderCurrentViewType () {
+    switch(this.state.currentViewType) {
+      case 'grid':
+        return <ResourcesGrid archiveItems={this.state.archiveItems}></ResourcesGrid>
+      case 'list':
+        return <ResourcesList archiveItems={this.state.archiveItems}></ResourcesList>
+      case 'map':
+        return <ResourcesMap archiveItems={this.state.archiveItems}></ResourcesMap>
+      default:
+        return <div></div>
+    }
+  }
   render() {
     return <div className="home-view">
             <div className="sidebar">
               <FilterSidebar filters={this.props.filters}></FilterSidebar>
             </div>
             <div className="main-content">
+              <div className="content-top-bar">
+                <div className="results-count">Results: {this.state.archiveItems.length}</div>
+                <div className="results-view-type">
+                  <div className={`view-type grid ${this.state.currentViewType == 'grid' ? "active" : ""}`} onClick={() => this.setCurrentViewType('grid')}>G</div>
+                  <div className={`view-type list ${this.state.currentViewType == 'list' ? "active" : ""}`} onClick={() => this.setCurrentViewType('list')}>L</div>
+                  <div className={`view-type map ${this.state.currentViewType == 'map' ? "active" : ""}`} onClick={() => this.setCurrentViewType('map')}>M</div>
+                </div>
+                <div className="results-seach">
+                  <input type="text"></input>
+                </div>
+              </div>
+              <div className="content-filters-summary">
+                {this.props.params && this.renderParamsRecap()}
+              </div>
               {this.state.loading ? 
                 <div className="loading"><Spinner animation="border" />Loading resources</div>
                   :
-                <Container>
-                  <Row xs={2} md={3} lg={4}>
-                    {this.state.archiveItems.map((item) => (
-                      <Col key={item.id}>
-                        <ResourceCard item={item}></ResourceCard>
-                      </Col>
-                    ))}
-                  </Row>
-                </Container>
+                  this.renderCurrentViewType()
             }
             </div>
           </div>
