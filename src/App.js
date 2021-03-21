@@ -22,7 +22,9 @@ class App extends Component {
     pandemics: [],
     languages: [],
     tags: [],
-    countries: []
+    countries: [],
+    themes: [],
+    cities: []
 	}
   componentDidMount() {
     var self = this
@@ -32,6 +34,7 @@ class App extends Component {
 
     base('Type list').select({
         view: 'Grid view',
+        filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
         if (err) { console.error(err); return; }
         self.setState({
@@ -40,6 +43,7 @@ class App extends Component {
     });
     base('Pandemic list').select({
         view: 'Grid view',
+        filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
         if (err) { console.error(err); return; }
         self.setState({
@@ -48,6 +52,7 @@ class App extends Component {
     });
     base('Language list').select({
       view: 'Grid view',
+      filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
         if (err) { console.error(err); return; }
         self.setState({
@@ -56,6 +61,7 @@ class App extends Component {
     });
     base('Tag list').select({
       view: 'Grid view',
+      filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
         if (err) { console.error(err); return; }
         self.setState({
@@ -64,10 +70,29 @@ class App extends Component {
     });
     base('Countries List').select({
       view: 'Grid view',
+      filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
         if (err) { console.error(err); return; }
         self.setState({
           countries: data
+        });
+    });
+    base('Themes list').select({
+      view: 'Grid view',
+      filterByFormula: '{Count}>0'
+    }).firstPage(function(err, data) {
+        if (err) { console.error(err); return; }
+        self.setState({
+          themes: data
+        });
+    });
+    base('Cities List').select({
+      view: 'Grid view',
+      filterByFormula: '{Count}>0'
+    }).firstPage(function(err, data) {
+        if (err) { console.error(err); return; }
+        self.setState({
+          cities: data
         });
     });
   }

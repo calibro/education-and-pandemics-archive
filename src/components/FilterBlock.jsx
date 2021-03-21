@@ -14,25 +14,24 @@ const UseQueryParamExample = (props) => {
     }
     setFilterValue(paramsArray)
   }
+
   return (
-    <div>
-      <div className="filter-title">{props.blockTitle}</div>
-      <ul>
+    <div className="filter-list">
         {props.filterItems.map(filter =>{
           const val = filter.fields[props.labelBy]
-           return <li>
-             <label>
+          const isSelected = paramsArray.includes(val)
+           return (
+             <label className={`filter-list-item ${isSelected ? "checked" : " "}`}>
+              <div className="circle-checkbox"></div>
               <input type="checkbox"
-                checked={paramsArray.includes(val)} 
+                checked={isSelected} 
                 value={val} 
                 onChange={() => onChange(val)}
                 ></input>
                 {val} ({filter.fields['Count']})
              </label>
-             
-           </li>
+           )
         })}
-      </ul>
     </div>
   );
 };
