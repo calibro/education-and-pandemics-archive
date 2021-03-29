@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/ische/static/css/main.6fe7629f.chunk.css",
-    "main.js": "/ische/static/js/main.36ce66cc.chunk.js",
-    "main.js.map": "/ische/static/js/main.36ce66cc.chunk.js.map",
-    "runtime-main.js": "/ische/static/js/runtime-main.e775b8ca.js",
-    "runtime-main.js.map": "/ische/static/js/runtime-main.e775b8ca.js.map",
+    "main.css": "/ische/static/css/main.fd2412a6.chunk.css",
+    "main.js": "/ische/static/js/main.65bb2268.chunk.js",
+    "main.js.map": "/ische/static/js/main.65bb2268.chunk.js.map",
+    "runtime-main.js": "/ische/static/js/runtime-main.7b10626a.js",
+    "runtime-main.js.map": "/ische/static/js/runtime-main.7b10626a.js.map",
     "static/css/2.150d169a.chunk.css": "/ische/static/css/2.150d169a.chunk.css",
-    "static/js/2.cb0aa559.chunk.js": "/ische/static/js/2.cb0aa559.chunk.js",
-    "static/js/2.cb0aa559.chunk.js.map": "/ische/static/js/2.cb0aa559.chunk.js.map",
-    "static/js/3.756f3cb2.chunk.js": "/ische/static/js/3.756f3cb2.chunk.js",
-    "static/js/3.756f3cb2.chunk.js.map": "/ische/static/js/3.756f3cb2.chunk.js.map",
+    "static/js/2.f94239b0.chunk.js": "/ische/static/js/2.f94239b0.chunk.js",
+    "static/js/2.f94239b0.chunk.js.map": "/ische/static/js/2.f94239b0.chunk.js.map",
+    "static/js/3.3e4b73bc.chunk.js": "/ische/static/js/3.3e4b73bc.chunk.js",
+    "static/js/3.3e4b73bc.chunk.js.map": "/ische/static/js/3.3e4b73bc.chunk.js.map",
     "index.html": "/ische/index.html",
     "static/css/2.150d169a.chunk.css.map": "/ische/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.6fe7629f.chunk.css.map": "/ische/static/css/main.6fe7629f.chunk.css.map",
-    "static/js/2.cb0aa559.chunk.js.LICENSE.txt": "/ische/static/js/2.cb0aa559.chunk.js.LICENSE.txt",
+    "static/css/main.fd2412a6.chunk.css.map": "/ische/static/css/main.fd2412a6.chunk.css.map",
+    "static/js/2.f94239b0.chunk.js.LICENSE.txt": "/ische/static/js/2.f94239b0.chunk.js.LICENSE.txt",
+    "static/media/arrow.9282adbf.svg": "/ische/static/media/arrow.9282adbf.svg",
     "static/media/logo.65b2bc4b.svg": "/ische/static/media/logo.65b2bc4b.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.e775b8ca.js",
+    "static/js/runtime-main.7b10626a.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.cb0aa559.chunk.js",
-    "static/css/main.6fe7629f.chunk.css",
-    "static/js/main.36ce66cc.chunk.js"
+    "static/js/2.f94239b0.chunk.js",
+    "static/css/main.fd2412a6.chunk.css",
+    "static/js/main.65bb2268.chunk.js"
   ]
 }
