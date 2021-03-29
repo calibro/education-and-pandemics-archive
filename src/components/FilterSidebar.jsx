@@ -56,7 +56,7 @@ export default class ResourceCard extends Component {
     this.setState({
       currentFilterPanel: value
     })
-    this.setShowSideMenu(true)
+    value && this.setShowSideMenu(true)
   }
 
   currentFilterContent () {
@@ -99,7 +99,10 @@ export default class ResourceCard extends Component {
         </div>
         <FilterSecondarySidebar open={this.state.showSideMenu} width="250"
         title={this.state.currentFilterPanel ? filtersList.find(e => e.key === this.state.currentFilterPanel).label : ''}
-        onClose={() => this.setShowSideMenu(false)} 
+        onClose={() => {
+          this.setShowSideMenu(false)
+          this.setFilterPanel(false)
+        }}
         children={
           this.currentFilterContent()
         }>
