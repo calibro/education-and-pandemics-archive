@@ -8,7 +8,7 @@ import ResourcesMap from '../components/ResourcesMap'
 import FilterSidebar from '../components/FilterSidebar'
 import CurrentFiltersRecap from '../components/CurrentFiltersRecap'
 import Airtable from 'airtable'
-
+import FilterSearch from '../components/FilterSearch'
 import rectIcon from '../assets/rectangle.svg';
 import rectIconActive from '../assets/rectangle-active.svg';
 import listIcon from '../assets/list.svg';
@@ -49,8 +49,14 @@ export default class HomeView extends Component {
     let formulas = []
 
     this.props.params && Object.keys(this.props.params).forEach(paramKey => {
-      let filterVal = Array.isArray(this.props.params[paramKey]) ? this.props.params[paramKey] : [this.props.params[paramKey]]
-      formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
+      if(paramKey === 'search') {
+        formulas.push('OR(FIND(LOWER("'+ this.props.params[paramKey] + '"), LOWER({Summary (limit 500)})), '+
+        'FIND(LOWER("'+ this.props.params[paramKey] + '"), LOWER({Title ID})))')
+
+      } else {
+        let filterVal = Array.isArray(this.props.params[paramKey]) ? this.props.params[paramKey] : [this.props.params[paramKey]]
+        formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
+      }
     })
     let formula = formulas.length > 0 ? 'AND(' + formulas.join(', ') +')' : ''
 
@@ -97,7 +103,7 @@ export default class HomeView extends Component {
                   <div className={`view-type map`} onClick={() => this.setCurrentViewType('map')} style={{ backgroundImage: this.state.currentViewType == 'map' ? `url(${circleIconActive})` : `url(${circleIcon})`}}></div>
                 </div>
                 <div className="results-seach">
-                  <input type="text" placeholder="search"></input>
+                  <FilterSearch></FilterSearch>
                 </div>
               </div>
               <div className="content-filters-summary">
