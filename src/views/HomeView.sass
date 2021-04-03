@@ -9,7 +9,6 @@
 .main-content
   overflow: auto
   max-height: calc(100vh - 50px)
-  padding: 30px
   width: 100%
 
   .content-top-bar
@@ -17,7 +16,7 @@
     color: #575449
     align-items: center
     width: 100%
-    margin-bottom: 15px
+    padding: 30px
     .results-count
       font-size: 16px
     .results-view-type
@@ -27,21 +26,26 @@
         width: 24px
         height: 24px
         cursor: pointer
-        border: 1px solid
         margin: 5px
-        &.active
-          background: #B87333
+        background-repeat: no-repeat
+        background-position: center center
+        background-size: contain
     .results-seach
         margin-left: 10px
+        input
+          border-radius: 20px;
+          padding: 2px 10px;
+          outline: none
+
   .content-filters-summary
     display: flex
     margin-bottom: 15px
+    padding: 0px 30px
     .filter-recap-item
       cursor: pointer
       font-size: 16px
       line-height: 16px
       border-radius: 12px
-      background: #B87333
+      background: #F3EFE6
       padding: 4px 8px
-      color: #FBFAF7
       margin-right: 6px

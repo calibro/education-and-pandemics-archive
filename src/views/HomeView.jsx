@@ -9,6 +9,15 @@ import FilterSidebar from '../components/FilterSidebar'
 import CurrentFiltersRecap from '../components/CurrentFiltersRecap'
 import Airtable from 'airtable'
 
+import rectIcon from '../assets/rectangle.svg';
+import rectIconActive from '../assets/rectangle-active.svg';
+import listIcon from '../assets/list.svg';
+import listIconActive from '../assets/list-active.svg';
+import circleIcon from '../assets/circle.svg';
+import circleIconActive from '../assets/circle-active.svg';
+
+
+
 export default class HomeView extends Component {
   state = {
 		archiveItems: [],
@@ -83,12 +92,12 @@ export default class HomeView extends Component {
               <div className="content-top-bar">
                 <div className="results-count">Results: {this.state.archiveItems.length}</div>
                 <div className="results-view-type">
-                  <div className={`view-type grid ${this.state.currentViewType == 'grid' ? "active" : ""}`} onClick={() => this.setCurrentViewType('grid')}>G</div>
-                  <div className={`view-type list ${this.state.currentViewType == 'list' ? "active" : ""}`} onClick={() => this.setCurrentViewType('list')}>L</div>
-                  <div className={`view-type map ${this.state.currentViewType == 'map' ? "active" : ""}`} onClick={() => this.setCurrentViewType('map')}>M</div>
+                  <div className={`view-type grid`} onClick={() => this.setCurrentViewType('grid')} style={{ backgroundImage: this.state.currentViewType == 'grid' ? `url(${rectIconActive})`: `url(${rectIcon})` }}></div>
+                  <div className={`view-type list`} onClick={() => this.setCurrentViewType('list')} style={{ backgroundImage: this.state.currentViewType == 'list' ? `url(${listIconActive})` : `url(${listIcon})`}}></div>
+                  <div className={`view-type map`} onClick={() => this.setCurrentViewType('map')} style={{ backgroundImage: this.state.currentViewType == 'map' ? `url(${circleIconActive})` : `url(${circleIcon})`}}></div>
                 </div>
                 <div className="results-seach">
-                  <input type="text"></input>
+                  <input type="text" placeholder="search"></input>
                 </div>
               </div>
               <div className="content-filters-summary">

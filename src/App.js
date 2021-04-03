@@ -86,7 +86,7 @@ class App extends Component {
           themes: data
         });
     });
-    base('Cities List').select({
+    base('Location List').select({
       view: 'Grid view',
       filterByFormula: '{Count}>0'
     }).firstPage(function(err, data) {
