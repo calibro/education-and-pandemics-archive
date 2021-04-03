@@ -3,6 +3,7 @@ import './ResourceView.sass';
 import Airtable from 'airtable'
 import {Spinner} from 'react-bootstrap'
 import * as embedUtils from '../utils/embed'
+import moment from 'moment'
 
 export default class ResourceView extends Component {
   state = {
@@ -33,25 +34,25 @@ export default class ResourceView extends Component {
       // YouTube
       if (source.hostname.includes('youtu')) {
         let youtubeId = embedUtils.getYoutubeId(source.href)
-        code = <iframe width="640" height="360"  title="content" src={'https://www.youtube.com/embed/' + youtubeId} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        code = <iframe width="100%" height="360"  title="content" src={'https://www.youtube.com/embed/' + youtubeId} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       }
 
       // VIMEO
       else if (source.hostname.includes('vimeo')) {
         let vimeoId = embedUtils.getVimeoId(source.href)
-        code = <iframe width="640" height="360" title="content" src={"https://player.vimeo.com/video/" + vimeoId} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        code = <iframe width="100%" height="360" title="content" src={"https://player.vimeo.com/video/" + vimeoId} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       }
 
       // Archive
       else if (source.hostname.includes('archive.org')) {
         let archiveUrl = embedUtils.getArchiveURL(source.href)
-        code = <iframe width="640" height="360" title="content" src={archiveUrl} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        code = <iframe width="100%" height="360" title="content" src={archiveUrl} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       }
 
       // Spotify
       else if (source.hostname.includes('spotify')) {
         let spotifyUrl = embedUtils.getSpotifyUrl(source.href)
-        code = <iframe width="640" height="360" title="content" src={spotifyUrl} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        code = <iframe width="100%" height="360" title="content" src={spotifyUrl} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
       }
       // Soundcloud
       else if (source.hostname.includes('soundcloud')) {
@@ -78,6 +79,57 @@ export default class ResourceView extends Component {
     return resourceContent
   }
   resourceInfo() {
+    let infoFields = [{
+      field: 'Pandemic_name',
+      label: 'Pandemic'
+     },
+     {
+      field: 'Type_name',
+      label: 'Type'
+     },
+     {
+      field: 'Themes_name',
+      label: 'Themes'
+     },
+     {
+      field: 'Tags_name',
+      label: 'Tags'
+     },
+     {
+      field: 'Country_name',
+      label: 'Country'
+     },
+     {
+      field: 'City_name',
+      label: 'City'
+     },
+     {
+      field: 'Language_name',
+      label: 'Language'
+     },
+     {
+      field: 'Credits',
+      label: 'Credits'
+     },
+     {
+      field: 'Production date',
+      label: 'Created',
+      format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+     },
+     {
+      field: 'Publishing date',
+      label: 'Published',
+      format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+     },
+     {
+      field: 'Added in the archive (YYYY-MM-DD)',
+      label: 'Archived',
+      format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+     },
+     {
+      field: 'Contributor',
+      label: 'Contributor'
+     }]
     return <div className="resource-sideinfo">
               <div className="resource-title">
                 {this.state.resource.fields['Title ID']}
@@ -87,10 +139,14 @@ export default class ResourceView extends Component {
                 {this.state.resource.fields['Summary (limit 500)']}
               </div>
               <div className="resource-metadata">
-                {['Pandemics', 'Type_name', 'Themes_name', 'Tags', 'Country', 'City', 'Language', 'Credits', 'Created', 'Published', 'Archived', 'Contributor'].map(key => {
-                  return <div className="meta-row" key={key}>
-                    <div className="meta-title">{key}</div>
-                    <div className="meta-value">{Array.isArray(this.state.resource.fields[key]) ? this.state.resource.fields[key].join(', ') : this.state.resource.fields[key]}</div>
+                {infoFields.map(info => {
+                  return <div className="meta-row" key={info.field}>
+                    <div className="meta-title">{info.label}</div>
+                    <div className="meta-value">{
+                      info.format ? info.format(this.state.resource.fields[info.field]) : (
+                        Array.isArray(this.state.resource.fields[info.field]) ? this.state.resource.fields[info.field].join(', ') : this.state.resource.fields[info.field]
+                      )}
+                    </div>
                   </div>
                   }
                 )}
