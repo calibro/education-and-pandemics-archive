@@ -1,5 +1,10 @@
 import React from 'react';
-import { useTable } from 'react-table'
+import { useTable, useSortBy } from 'react-table'
+import arrowDown from '../assets/arrow-down.png';
+import arrowUp from '../assets/arrow-up.png';
+import './ResourcesList.sass';
+
+import PopoverStickOnHover from './PopoverStickOnHover'
 
 const ResourcesList = ({archiveItems}) => {
   const data = React.useMemo(
@@ -11,37 +16,44 @@ const ResourcesList = ({archiveItems}) => {
     () => [
       {
         Header: 'Pandemics',
-        accessor: 'Pandemic',
+        accessor: 'Pandemic_name',
+        sortType: 'basic'
       },
       {
         Header: 'Title',
         accessor: 'Title ID',
+        sortType: 'basic'
       },
       {
         Header: 'Type',
-        accessor: 'Type',
+        accessor: 'Type_name',
+        sortType: 'basic'
       },
       {
         Header: 'Themes',
-        accessor: 'Themes',
+        accessor: 'Themes_name',
+        sortType: 'basic'
       },
       {
         Header: 'Tags',
-        accessor: 'Tags',
+        accessor: 'Tags_name',
+        sortType: 'basic'
       },
       {
         Header: 'Languages',
-        accessor: 'Language',
+        accessor: 'Language_name',
+        sortType: 'basic'
       },
       {
         Header: 'Contributor',
         accessor: 'Contributor',
+        sortType: 'basic'
       },
     ],
     []
   )
 
-  const tableInstance = useTable({ columns, data })
+  const tableInstance = useTable({ columns, data },useSortBy)
  
   const {
     getTableProps,
@@ -53,7 +65,7 @@ const ResourcesList = ({archiveItems}) => {
   
   return (
     // apply the table props
-    <table {...getTableProps()}>
+    <table {...getTableProps()} className="resource-table">
       <thead>
         {// Loop over the header rows
         headerGroups.map(headerGroup => (
@@ -62,9 +74,15 @@ const ResourcesList = ({archiveItems}) => {
             {// Loop over the headers in each row
             headerGroup.headers.map(column => (
               // Apply the header cell props
-              <th {...column.getHeaderProps()}>
+              <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                 {// Render the header
                 column.render('Header')}
+                {column.isSorted && (<span>
+                  <img src={
+                    (column.isSortedDesc ? arrowUp : arrowDown)
+                  }/>
+                </span>
+                )}
               </th>
             ))}
           </tr>
@@ -76,20 +94,30 @@ const ResourcesList = ({archiveItems}) => {
         rows.map(row => {
           // Prepare the row for display
           prepareRow(row)
+          debugger
           return (
             // Apply the row props
-            <tr {...row.getRowProps()}>
+            <PopoverStickOnHover
+              component={row.original.Attachments ? <img src={row.original.Attachments[0].url} style={{width: '30vw'}}/> : <div></div>}
+              placement="bottom"
+              onMouseEnter={() => { }}
+              delay={200}
+            >
+              <tr {...row.getRowProps()}>
               {// Loop over the rows cells
               row.cells.map(cell => {
                 // Apply the cell props
                 return (
                   <td {...cell.getCellProps()}>
                     {// Render the cell contents
-                    cell.render('Cell')}
+                    Array.isArray(cell.value) ? cell.value.join(', ') : cell.render('Cell')
+                    //cell.render('Cell')
+                    }
                   </td>
                 )
               })}
             </tr>
+          </PopoverStickOnHover>
           )
         })}
       </tbody>
