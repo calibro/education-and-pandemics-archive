@@ -3,12 +3,18 @@ import { useTable, useSortBy } from 'react-table'
 import arrowDown from '../assets/arrow-down.png';
 import arrowUp from '../assets/arrow-up.png';
 import './ResourcesList.sass';
+import { useHistory } from "react-router-dom";
 
 import PopoverStickOnHover from './PopoverStickOnHover'
 
 const ResourcesList = ({archiveItems}) => {
   const data = React.useMemo(
-    () => archiveItems.map(i => i.fields),
+    () => archiveItems.map(i => {
+      return {
+        ...i.fields,
+        id: i.id
+      }
+    }),
     []
   )
 
@@ -63,6 +69,12 @@ const ResourcesList = ({archiveItems}) => {
     prepareRow,
   } = tableInstance
   
+
+  let history = useHistory();
+  const handleClick = (row) => {
+    history.push("/resource/"+row.original.id);
+  }
+
   return (
     // apply the table props
     <table {...getTableProps()} className="resource-table">
@@ -94,7 +106,6 @@ const ResourcesList = ({archiveItems}) => {
         rows.map(row => {
           // Prepare the row for display
           prepareRow(row)
-          debugger
           return (
             // Apply the row props
             <PopoverStickOnHover
@@ -103,7 +114,7 @@ const ResourcesList = ({archiveItems}) => {
               onMouseEnter={() => { }}
               delay={200}
             >
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} onClick={() => handleClick(row)}>
               {// Loop over the rows cells
               row.cells.map(cell => {
                 // Apply the cell props
