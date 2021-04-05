@@ -25,7 +25,7 @@ const ResourcesSlider = ({items}) => {
             inputType = {["touch", "mouse"]}
             bounce = {10}
             autoResize = {false}
-            zIndex = {2000}
+            zIndex = {2}
             bound = {false}
             overflow = {false}
             hanger = {"50%"}

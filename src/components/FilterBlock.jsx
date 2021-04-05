@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useQueryParam, ArrayParam } from 'use-query-params';
 
-const UseQueryParamExample = (props) => {
+const FilterBlock = (props) => {
   const [params, setFilterValue] = useQueryParam(props.filterName, ArrayParam);
 
   const paramsArray = params || []
@@ -36,4 +36,4 @@ const UseQueryParamExample = (props) => {
   );
 };
 
-export default UseQueryParamExample;
+export default FilterBlock;

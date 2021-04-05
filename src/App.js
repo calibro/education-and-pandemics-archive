@@ -2,16 +2,17 @@ import './App.sass';
 import {Component} from 'react'
 import HomeView from './views/HomeView'
 import ResourceView from './views/ResourceView'
+import ExploreView from './views/ExploreView'
+import Header from './components/Header'
+
 import qs from 'qs'
 
 import Airtable from 'airtable'
-import logo from './assets/logo.svg';
 
 import {
-  HashRouter as Router,
   Switch,
   Route,
-	Link
+  withRouter
 } from "react-router-dom";
 
 import { QueryParamProvider } from 'use-query-params';
@@ -98,29 +99,30 @@ class App extends Component {
   }
   render() {
     return (
-			<Router>
         <QueryParamProvider ReactRouterRoute={Route}>
           <div className="App">
-            <div className="header">
-              <Link to="/"><img src={logo} alt="logo"/></Link>
-            </div>
+            {
+              this.props.location.pathname !=='/' ? <Header/>:null
+            }
             <div className="app-content">
               <Switch>
-                <Route exact path="/resource/:resourceId" render={(props)=>{
+                <Route exact path="/explore/resource/:resourceId" render={(props)=>{
                   return <ResourceView resourceId={props.match.params.resourceId}/>
                 }} />
-                <Route path="/" render={(props) => {
+                <Route path="/explore" render={(props) => {
                     let urlParams = qs.parse(props.location.search.slice(1))
-                    return  <HomeView archiveItems={this.state.archiveItems} filters={this.state} params={urlParams}></HomeView>
+                    return  <ExploreView filters={this.state} params={urlParams}></ExploreView>
+                  }}/>
+                <Route path="/" render={() => {
+                    return  <HomeView></HomeView>
                   }}/>
               </Switch>
             </div>
           </div>
         </QueryParamProvider>
-			</Router>
     );
   }
 }
 
 
-export default App;
+export default withRouter(App);

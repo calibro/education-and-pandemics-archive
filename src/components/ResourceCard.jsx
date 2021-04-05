@@ -6,7 +6,7 @@ const ResourceCard = ({item}) => {
   const history = useHistory();
 
   function handleClick() {
-    history.push("/resource/" + item.id);
+    history.push("/explore/resource/" + item.id);
   }
 
   return (

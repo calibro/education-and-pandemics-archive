@@ -2,6 +2,8 @@ import {Component} from 'react'
 import './FilterSidebar.sass';
 
 import FilterBlock from './FilterBlock'
+import FilterDates from './FilterDates'
+
 import FilterSecondarySidebar from './FilterSecondarySidebar'
 import arrow from '../assets/arrow.svg';
 
@@ -75,6 +77,8 @@ export default class ResourceCard extends Component {
         return <FilterBlock blockTitle="Countries" filterName="Country" labelBy="Country" filterItems={this.props.filters.countries}></FilterBlock>
       case 'cities':
         return <FilterBlock blockTitle="Cities" filterName="City" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
+      case 'dates':
+        return <FilterDates></FilterDates>
       default:
         return <div></div>
     }

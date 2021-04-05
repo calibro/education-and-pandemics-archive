@@ -72,7 +72,7 @@ const ResourcesList = ({archiveItems}) => {
 
   let history = useHistory();
   const handleClick = (row) => {
-    history.push("/resource/"+row.original.id);
+    history.push("/explore/resource/"+row.original.id);
   }
 
   return (
