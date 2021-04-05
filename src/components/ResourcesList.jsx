@@ -92,7 +92,9 @@ const ResourcesList = ({archiveItems}) => {
                 {column.isSorted && (<span>
                   <img src={
                     (column.isSortedDesc ? arrowUp : arrowDown)
-                  }/>
+                  }
+                  alt="arrow sort"
+                  />
                 </span>
                 )}
               </th>
@@ -109,7 +111,7 @@ const ResourcesList = ({archiveItems}) => {
           return (
             // Apply the row props
             <PopoverStickOnHover
-              component={row.original.Attachments ? <img src={row.original.Attachments[0].url} style={{width: '30vw'}}/> : <div></div>}
+              component={row.original.Attachments ? <img src={row.original.Attachments[0].url} style={{width: '30vw'}} alt={row.original['Title ID']}/> : <div></div>}
               placement="bottom"
               onMouseEnter={() => { }}
               delay={200}

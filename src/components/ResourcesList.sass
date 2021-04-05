@@ -1,26 +1,20 @@
-.resource-table
+.resource-slider
+  position: relative
   width: 100%
-  thead
-    border-top: 1px solid #000
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
-    tr
-      th
-        color: #575449
-        text-transform: uppercase
-        font-size: 13px;
-        line-height: 20px;
-        padding-right: 5px
-        height: 40px
-        padding: 5px
-        span
-          margin-left: 5px
-  tbody
-    overflow-y: scroll
-    height: 100%
-    tr
-      border-bottom: 0.5px dashed #575449;
-      cursor: pointer
-      &:hover
-        background: #F3EFE6
-      td
-        padding: 5px
+  .fade-left
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(270deg, #FBFAF7 18.42%, rgba(251, 250, 247, 0.619324) 59.21%, rgba(251, 250, 247, 0) 100%);
+    transform: rotate(180deg);
+  .fade-right
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(270deg, #FBFAF7 18.42%, rgba(251, 250, 247, 0.619324) 59.21%, rgba(251, 250, 247, 0) 100%);

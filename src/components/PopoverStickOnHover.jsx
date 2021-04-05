@@ -12,7 +12,7 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Overlay, Popover } from 'react-bootstrap'
+import { Overlay } from 'react-bootstrap'
 
 export default class PopoverStickOnHover extends React.Component {
   constructor(props) {

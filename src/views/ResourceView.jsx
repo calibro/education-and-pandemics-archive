@@ -4,10 +4,12 @@ import Airtable from 'airtable'
 import {Spinner} from 'react-bootstrap'
 import * as embedUtils from '../utils/embed'
 import moment from 'moment'
+import ResourcesSlider from '../components/ResourcesSlider'
 
 export default class ResourceView extends Component {
   state = {
-    resource: {}
+    resource: {},
+    relatedResources: []
   }
   componentDidMount() {
     var self = this
@@ -20,7 +22,17 @@ export default class ResourceView extends Component {
       self.setState({
         resource: record
       })
+      base('Data Sample').select({
+        view: 'Grid view',
+        filterByFormula: 'FIND("'+record.fields['Type_name']+'",{Type})'
+      }).firstPage(function(err, records) {
+          if (err) { console.error(err); return; }
+          self.setState({
+            relatedResources: records,
+          });
+      })
     })
+
   }
   generateEmbedCode () {
     let code = <div></div>
@@ -56,7 +68,7 @@ export default class ResourceView extends Component {
       }
       // Soundcloud
       else if (source.hostname.includes('soundcloud')) {
-        code = <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src={'https://w.soundcloud.com/player/?url=' + encodeURIComponent(source.href) + '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true'}></iframe>
+        code = <iframe width="100%" height="300" title="content" scrolling="no" frameborder="no" allow="autoplay" src={'https://w.soundcloud.com/player/?url=' + encodeURIComponent(source.href) + '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true'}></iframe>
       }
     }
 
@@ -159,16 +171,30 @@ export default class ResourceView extends Component {
           </div>
   }
 
+  relatedResources () {
+    return this.state.relatedResources.length > 0 ? <ResourcesSlider items={this.state.relatedResources}></ResourcesSlider> : <div>No related resources</div>
+  }
+
   render() {
     return this.state.resource.fields ? 
-      (<div className="resource-view">
-        <div className="resource-preview">
-          {this.resourceMedia()}
+      (
+      <div className="resource-page">
+        <div className="resource-view">
+          <div className="resource-preview">
+            {this.resourceMedia()}
+          </div>
+          <div className="resource-sideinfo-container">
+            {this.resourceInfo()}
+          </div>
         </div>
-        <div className="resource-sideinfo-container">
-          {this.resourceInfo()}
+        <div className="related-resources">
+          <div className="related-options">
+            Explore other <b>{this.state.resource.fields['Type_name']}</b>
+          </div>
+          {this.relatedResources()}
         </div>
-      </div>)
+      </div>
+      )
     :
     (<div className="loading"><Spinner animation="border" />Loading resource</div>)
   }

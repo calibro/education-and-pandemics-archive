@@ -98,9 +98,9 @@ export default class HomeView extends Component {
               <div className="content-top-bar">
                 <div className="results-count">Results: {this.state.archiveItems.length}</div>
                 <div className="results-view-type">
-                  <div className={`view-type grid`} onClick={() => this.setCurrentViewType('grid')} style={{ backgroundImage: this.state.currentViewType == 'grid' ? `url(${rectIconActive})`: `url(${rectIcon})` }}></div>
-                  <div className={`view-type list`} onClick={() => this.setCurrentViewType('list')} style={{ backgroundImage: this.state.currentViewType == 'list' ? `url(${listIconActive})` : `url(${listIcon})`}}></div>
-                  <div className={`view-type map`} onClick={() => this.setCurrentViewType('map')} style={{ backgroundImage: this.state.currentViewType == 'map' ? `url(${circleIconActive})` : `url(${circleIcon})`}}></div>
+                  <div className={`view-type grid`} onClick={() => this.setCurrentViewType('grid')} style={{ backgroundImage: this.state.currentViewType === 'grid' ? `url(${rectIconActive})`: `url(${rectIcon})` }}></div>
+                  <div className={`view-type list`} onClick={() => this.setCurrentViewType('list')} style={{ backgroundImage: this.state.currentViewType === 'list' ? `url(${listIconActive})` : `url(${listIcon})`}}></div>
+                  <div className={`view-type map`} onClick={() => this.setCurrentViewType('map')} style={{ backgroundImage: this.state.currentViewType === 'map' ? `url(${circleIconActive})` : `url(${circleIcon})`}}></div>
                 </div>
                 <div className="results-seach">
                   <FilterSearch></FilterSearch>

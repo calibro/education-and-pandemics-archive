@@ -8,6 +8,7 @@
   transition: all 0.2s ease;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
+  cursor: pointer
   &:hover
     text-decoration: none
     color: #000000
@@ -17,6 +18,8 @@
     width: 100%
     max-height: 160px
     margin-bottom: 7px
+    pointer-events: none
+    user-drag: none
   .card-title
     font-style: normal;
     font-weight: normal;
@@ -27,3 +30,10 @@
     font-size: 16px;
     line-height: 18px;
 
+// For slider rendering
+.eg-flick-camera
+  .resource-card
+    width: 240px
+    border-top: 1px solid #000
+    &:first-child
+      border-left: 1px solid #000
