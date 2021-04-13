@@ -1,12 +1,14 @@
 import './ResourceCard.sass';
 import { useHistory } from "react-router-dom";
 
-const ResourceCard = ({item}) => {
+const ResourceCard = ({item, flick}) => {
 
   const history = useHistory();
 
   function handleClick() {
-    history.push("/explore/resource/" + item.id);
+    if(!flick || !flick.current.isPlaying()) {
+      history.push("/explore/resource/" + item.id);
+    }
   }
 
   return (

@@ -5,6 +5,8 @@ import './ResourcesSlider.sass';
  
 
 const ResourcesSlider = ({items}) => {
+  let flick =  React.createRef();
+
   return (
       <div className="resource-slider">
         <div className="fade-left"></div>
@@ -32,9 +34,10 @@ const ResourcesSlider = ({items}) => {
             gap = {0}
             moveType = {{type: "snap", count: 1}}
             collectStatistics = {true}
+            ref={flick}
           >
             {items.map(item =>
-              <ResourceCard item={item}></ResourceCard>
+              <ResourceCard item={item} flick={flick}></ResourceCard>
             )}
         </Flicking>
         <div className="fade-right"></div>
