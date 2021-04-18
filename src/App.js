@@ -1,4 +1,6 @@
 import './App.sass';
+import './components/CustomSelect.sass';
+
 import {Component} from 'react'
 import HomeView from './views/HomeView'
 import ResourceView from './views/ResourceView'

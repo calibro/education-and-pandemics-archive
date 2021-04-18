@@ -3,29 +3,8 @@ import './ResourceView.sass';
 import Airtable from 'airtable'
 import {Spinner} from 'react-bootstrap'
 import * as embedUtils from '../utils/embed'
-import ResourcesSlider from '../components/ResourcesSlider'
 import ResourceExtendedInfo from '../components/ResourceExtendedInfo'
-
-const RelatedResources = ({resource}) => {
-  const [relatedResources, setRelatedResources] = useState([]);
-  
-  useEffect(() => {
-    var base = new Airtable({
-      apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-    }).base('appyRkLfkVtG84rMU');
-
-    base('Data Sample').select({
-      view: 'Grid view',
-      filterByFormula: 'FIND("'+resource.fields['Type_name']+'",{Type})'
-    }).firstPage(function(err, records) {
-        if (err) { console.error(err); return; }
-        setRelatedResources(records)
-    })
-  }, [])
-
-  return relatedResources.length > 0 ? <ResourcesSlider items={relatedResources}></ResourcesSlider> : <div>No related resources</div>
-
-}
+import RelatedResources from '../components/RelatedResources'
 
 
 const ResourceView = ({resourceId}) => {
@@ -103,7 +82,6 @@ const ResourceView = ({resourceId}) => {
     return resourceContent
   }
   
-
   return resource.fields ? 
     (
     <div className="resource-page" ref={viewRef}>
@@ -116,9 +94,6 @@ const ResourceView = ({resourceId}) => {
         </div>
       </div>
       <div className="related-resources">
-        <div className="related-options">
-          Explore other <b>{resource.fields['Type_name']}</b>
-        </div>
         <RelatedResources resource={resource}></RelatedResources>
       </div>
     </div>
