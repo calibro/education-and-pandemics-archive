@@ -3,7 +3,11 @@ import {Component} from 'react'
 import HomeView from './views/HomeView'
 import ResourceView from './views/ResourceView'
 import ExploreView from './views/ExploreView'
+import AboutView from './views/AboutView'
+import CollectionView from './views/CollectionView'
+
 import Header from './components/Header'
+import {CollectionProvider} from './utils/collection'
 
 import qs from 'qs'
 
@@ -12,7 +16,8 @@ import Airtable from 'airtable'
 import {
   Switch,
   Route,
-  withRouter
+  withRouter,
+  Redirect
 } from "react-router-dom";
 
 import { QueryParamProvider } from 'use-query-params';
@@ -100,25 +105,37 @@ class App extends Component {
   render() {
     return (
         <QueryParamProvider ReactRouterRoute={Route}>
-          <div className="App">
-            {
-              this.props.location.pathname !=='/' ? <Header/>:null
-            }
-            <div className="app-content">
-              <Switch>
-                <Route exact path="/explore/resource/:resourceId" render={(props)=>{
-                  return <ResourceView resourceId={props.match.params.resourceId}/>
-                }} />
-                <Route path="/explore" render={(props) => {
-                    let urlParams = qs.parse(props.location.search.slice(1))
-                    return  <ExploreView filters={this.state} params={urlParams}></ExploreView>
-                  }}/>
-                <Route path="/" render={() => {
-                    return  <HomeView></HomeView>
-                  }}/>
-              </Switch>
+          <CollectionProvider>
+
+            <div className="App">
+              {
+                this.props.location.pathname !=='/' ? <Header/>:null
+              }
+              <div className="app-content">
+                <Switch>
+                  <Route exact path="/explore/resource/:resourceId" render={(props)=>{
+                    return <ResourceView resourceId={props.match.params.resourceId}/>
+                  }} />
+                  <Route path="/explore" render={(props) => {
+                      let urlParams = qs.parse(props.location.search.slice(1))
+                      return  <ExploreView filters={this.state} params={urlParams}></ExploreView>
+                    }}/>
+                  <Route path="/about" render={() => {
+                      return  <AboutView></AboutView>
+                    }}/>
+                  <Route path="/collection" render={() => {
+                      return  <CollectionView></CollectionView>
+                    }}/>
+                  <Route exact path="/" render={() => {
+                      return  <HomeView></HomeView>
+                    }}/>
+                  <Route path="/">
+                      <Redirect to="/"/>
+                  </Route>
+                </Switch>
+              </div>
             </div>
-          </div>
+          </CollectionProvider>
         </QueryParamProvider>
     );
   }

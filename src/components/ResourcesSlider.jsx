@@ -37,7 +37,7 @@ const ResourcesSlider = ({items}) => {
             ref={flick}
           >
             {items.map(item =>
-              <ResourceCard item={item} flick={flick}></ResourceCard>
+              <ResourceCard item={item} flick={flick} key={item.id}></ResourceCard>
             )}
         </Flicking>
         <div className="fade-right"></div>
