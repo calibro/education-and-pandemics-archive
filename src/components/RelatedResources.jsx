@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from "react";
 import Airtable from 'airtable'
 import ResourcesSlider from '../components/ResourcesSlider'
+import {Spinner} from 'react-bootstrap'
 
 import Select from 'react-select'
 
 
 const RelatedResources = ({resource}) => {
   const [relatedResources, setRelatedResources] = useState([]);
+  const [loading, setLoading] = useState(false)
 
-  const themesOptions = resource.fields ? resource.fields['Themes_name'].map(t => {
+  const themesOptions = (resource.fields && resource.fields['Themes_name'])? resource.fields['Themes_name'].map(t => {
     return { value: t, label: t }
   }) : []
 
   const [activeThemeOption, setActiveThemeOption] = useState(themesOptions[0]);
 
   useEffect(() => {
+    setLoading(true)
     var base = new Airtable({
       apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
     }).base('appyRkLfkVtG84rMU');
 
+    let formula = ''
+    if (activeThemeOption) {
+      formula = 'AND(FIND("'+resource.fields['Type_name']+'",{Type}), FIND("'+activeThemeOption.value+'",{Themes}))'
+    } else {
+      formula = 'FIND("'+resource.fields['Type_name']+'",{Type})'
+    }
+
     base('Data Sample').select({
       view: 'Grid view',
-      filterByFormula: 'AND(FIND("'+resource.fields['Type_name']+'",{Type}), FIND("'+activeThemeOption.value+'",{Themes}))'
+      filterByFormula: formula
     }).firstPage(function(err, records) {
         if (err) { console.error(err); return; }
         setRelatedResources(records)
+        setLoading(false)
     })
   }, [activeThemeOption])
 
@@ -49,10 +60,14 @@ const RelatedResources = ({resource}) => {
             },
           })}/>
       </div>
-      {relatedResources.length > 0 ? 
+      {loading ? 
+        <div className="loading"><Spinner animation="border" />Loading resources</div>
+      :
+      (relatedResources.length > 0 ? 
         <ResourcesSlider items={relatedResources}></ResourcesSlider> 
         : 
         <div>No related resources</div>
+      )
       }
     </div>
   )

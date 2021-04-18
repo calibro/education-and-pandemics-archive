@@ -3,6 +3,7 @@ import './HomeView.sass';
 import Airtable from 'airtable'
 import {Link} from 'react-router-dom'
 import ResourcesSlider from '../components/ResourcesSlider'
+import {Spinner} from 'react-bootstrap'
 
 export default class HomeView extends Component {
   state = {
@@ -50,8 +51,14 @@ export default class HomeView extends Component {
             </div>
             <div className="latest-content">
               <div className="latest-title">Latest updates</div>
-              {
-              (this.state.archiveItems.length >0 && !this.state.loading) ? <ResourcesSlider items={this.state.archiveItems}></ResourcesSlider> : null
+              {this.state.loading ? 
+                <div className="loading"><Spinner animation="border" />Loading resources</div>
+                :
+                (this.state.archiveItems.length > 0 ? 
+                  <ResourcesSlider items={this.state.archiveItems}></ResourcesSlider>
+                  : 
+                  <div>No resources</div>
+                )
               }
             </div>
           </div>
