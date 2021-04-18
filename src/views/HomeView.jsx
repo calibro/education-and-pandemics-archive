@@ -44,7 +44,7 @@ export default class HomeView extends Component {
                 <div className="home-links">
                     <Link to="/explore" className="home-link">Explore</Link>
                     <Link to="/about" className="home-link">About</Link>
-                    <a href="#" className="home-link">Sumbit</a>
+                    <a href="#" className="home-link">Submit</a>
                 </div>
               </div>
             </div>

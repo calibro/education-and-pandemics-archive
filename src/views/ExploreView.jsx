@@ -73,9 +73,11 @@ export default class ExploreView extends Component {
     })
   }
   renderParamsRecap () {
-    return Object.keys(this.props.params).map(filterKey =>
-      <CurrentFiltersRecap filterKey={filterKey}></CurrentFiltersRecap>
-    )
+    return Object.keys(this.props.params)
+      .filter(filterKey => filterKey != 'search')
+      .map(filterKey =>
+        <CurrentFiltersRecap filterKey={filterKey}></CurrentFiltersRecap>
+      )
   }
   renderCurrentViewType () {
     switch(this.state.currentViewType) {
