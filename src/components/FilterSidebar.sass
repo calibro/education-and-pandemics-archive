@@ -57,6 +57,7 @@
       cursor: pointer
   .secondary-sidebar-content
     max-height: calc(100% - 40px)
+    height: calc(100% - 40px)
     overflow: auto
     .filter-list
       .filter-list-item
@@ -66,8 +67,8 @@
         align-items: center
         cursor: pointer
         .circle-checkbox
-          width: 12px
-          height: 12px
+          min-width: 12px
+          min-height: 12px
           border: 1px solid #000
           border-radius: 50%
           margin-right: 5px
@@ -78,6 +79,9 @@
             background: #B87333
         input
           display: none
+    .filter-dates
+      height: 100%
+      padding: 20px
 
 
 .arrow-icon

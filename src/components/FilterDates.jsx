@@ -1,12 +1,18 @@
 import * as React from 'react';
-import { useQueryParam, StringParam } from 'use-query-params';
+import { useQueryParam, StringParam, NumberParam } from 'use-query-params';
 import Select from 'react-select'
 
 const FilterDates = () => {
-  const [startDate, setStartDate] = useQueryParam('dateFrom', StringParam);
+  const [startDate, setStartDate] = useQueryParam('dateFrom', NumberParam);
+  const [endDate, setEndDate] = useQueryParam('dateTo', StringParam);
 
-  const onChangeStart = (evt) => {
-    setStartDate(evt.target.value)
+
+  const yearOptions = Array(100).fill().map((_, idx) => {
+    return { value: 1920 + idx, label: 1920 + idx }
+  })
+
+  const onChangeStart = (item) => {
+    setStartDate(item.value)
   }
 
   return (
@@ -14,8 +20,19 @@ const FilterDates = () => {
       Select the dates range to refine your search.
       <div className="dates-from">
         <label>From</label>
-        <select value={startDate} onChange={onChangeStart}>
-        </select>
+        <Select classNamePrefix="custom-select" 
+          options={yearOptions} 
+          onChange={onChangeStart}
+          value={startDate}
+          theme={theme => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#F3EFE6',
+              neutral0: '#FFFFF',
+              primary25: '#FBFAF7'
+            },
+          })}/>
       </div>
     </div>
   );

@@ -8,6 +8,10 @@ to configure locally the Airtable Api Key, create a .env.local file and define
 
 ```REACT_APP_AIRTABLE_API_KEY = <YOUR_API_KEY>```
 
+Also, you need to configure the MapBox API key
+
+```REACT_APP_MAPBOX_ACCESS_TOKEN = <YOUR_MAPBOX_API_KEY>```
+
 ## Available Scripts
 
 In the project directory, you can run:

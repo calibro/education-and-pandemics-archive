@@ -33,8 +33,8 @@ const filtersList = [
     label: 'Countries'
   },
   {
-    key: 'cities',
-    label: 'Cities'
+    key: 'locations',
+    label: 'Locations'
   },
   {
     key: 'dates',
@@ -75,8 +75,8 @@ export default class ResourceCard extends Component {
         return <FilterBlock blockTitle="Languages" filterName="Language" labelBy="Language" filterItems={this.props.filters.languages}></FilterBlock>
       case 'countries':
         return <FilterBlock blockTitle="Countries" filterName="Country" labelBy="Country" filterItems={this.props.filters.countries}></FilterBlock>
-      case 'cities':
-        return <FilterBlock blockTitle="Cities" filterName="City" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
+      case 'locations':
+        return <FilterBlock blockTitle="Locations" filterName="Location" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
       case 'dates':
         return <FilterDates></FilterDates>
       default:

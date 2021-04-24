@@ -28,8 +28,8 @@ const ResourceExtendedInfo = ({resource}) => {
     label: 'Country'
     },
     {
-    field: 'City_name',
-    label: 'City'
+    field: 'Location_name',
+    label: 'Location'
     },
     {
     field: 'Language_name',
