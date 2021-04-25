@@ -6,7 +6,7 @@ const ResourcesGrid = ({archiveItems}) => {
   return (
     <div className="resouce-grid-container">
       {archiveItems.map((item) => (
-          <ResourceCard item={item}></ResourceCard>
+          <ResourceCard item={item} key={item.id}></ResourceCard>
       ))}
     </div>
   )

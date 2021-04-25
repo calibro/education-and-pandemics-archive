@@ -1,6 +1,8 @@
 import './ResourceCard.sass';
 import { useHistory } from "react-router-dom";
 
+import docPlaceholder from '../assets/resource-placeholder-doc.svg';
+
 const ResourceCard = ({item, flick}) => {
 
   const history = useHistory();
@@ -10,11 +12,12 @@ const ResourceCard = ({item, flick}) => {
       history.push("/explore/resource/" + item.id);
     }
   }
+  
+  const resourceImage = item.fields.Attachments && item.fields.Attachments.length > 0 ? item.fields.Attachments[0].thumbnails.large.url : docPlaceholder
 
   return (
     <div onClick={handleClick} className="resource-card">
-        {(item.fields.Attachments && item.fields.Attachments.length > 0)
-          && <img src={item.fields.Attachments[0].url} alt={item.fields['Title ID']}/>}
+        <div className="thumb" style={{backgroundImage: `url(${resourceImage})`}}></div>
         <div className="card-title">{item.fields['Title ID']}</div>
 
         {item.fields.Pandemic_name && (
