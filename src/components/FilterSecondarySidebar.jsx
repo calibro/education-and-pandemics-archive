@@ -3,7 +3,8 @@ import arrow from '../assets/arrow.svg';
 
 const useClickOutside = (ref, callback) => {
   const handleClick = e => {
-    if (ref.current && !ref.current.contains(e.target) && !ref.current.parentNode.contains(e.target)) {
+    if (ref.current && !ref.current.contains(e.target) && !ref.current.parentNode.contains(e.target) && !e.target.className.includes('react-datepicker')) {
+      debugger
       callback();
     }
   };

@@ -1,38 +1,45 @@
 import * as React from 'react';
 import { useQueryParam, StringParam, NumberParam } from 'use-query-params';
 import Select from 'react-select'
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 const FilterDates = () => {
   const [startDate, setStartDate] = useQueryParam('dateFrom', NumberParam);
-  const [endDate, setEndDate] = useQueryParam('dateTo', StringParam);
+  const [endDate, setEndDate] = useQueryParam('dateTo', NumberParam);
 
 
-  const yearOptions = Array(100).fill().map((_, idx) => {
-    return { value: 1920 + idx, label: 1920 + idx }
-  })
-
-  const onChangeStart = (item) => {
-    setStartDate(item.value)
+  const onChangeStart = (date) => {
+    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : null
+    setStartDate(v)
+  }
+  const onChangeEnd = (date) => {
+    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : null
+    setEndDate(v)
   }
 
   return (
     <div className="filter-dates">
       Select the dates range to refine your search.
-      <div className="dates-from">
+      <div className="date-input dates-from">
         <label>From</label>
-        <Select classNamePrefix="custom-select" 
-          options={yearOptions} 
-          onChange={onChangeStart}
-          value={startDate}
-          theme={theme => ({
-            ...theme,
-            colors: {
-              ...theme.colors,
-              primary: '#F3EFE6',
-              neutral0: '#FFFFF',
-              primary25: '#FBFAF7'
-            },
-          })}/>
+        <DatePicker
+          selected={startDate}
+          onChange={date => onChangeStart(date)}
+          dateFormat="MM/yyyy"
+          placeholderText="Month / Year"
+          showMonthYearPicker
+        />
+      </div>
+      <div className="date-input dates-to">
+        <label>To</label>
+        <DatePicker
+          selected={endDate}
+          onChange={date => onChangeEnd(date)}
+          dateFormat="MM/yyyy"
+          placeholderText="Month / Year"
+          showMonthYearPicker
+        />
       </div>
     </div>
   );
