@@ -10,11 +10,11 @@ const FilterDates = () => {
 
 
   const onChangeStart = (date) => {
-    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : null
+    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : undefined
     setStartDate(v)
   }
   const onChangeEnd = (date) => {
-    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : null
+    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : undefined
     setEndDate(v)
   }
 

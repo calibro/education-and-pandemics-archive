@@ -1,11 +1,13 @@
 import {Component} from 'react'
 import './FilterSidebar.sass';
+import { useHistory } from "react-router-dom";
 
 import FilterBlock from './FilterBlock'
 import FilterDates from './FilterDates'
 
 import FilterSecondarySidebar from './FilterSecondarySidebar'
-import arrow from '../assets/arrow.svg';
+import arrowIcon from '../assets/arrow.svg';
+import resetIcon from '../assets/reset-icon.svg';
 
 const filtersList = [
   {
@@ -85,6 +87,7 @@ export default class ResourceCard extends Component {
 
   }
 
+
   render() {
     return <div className="sidebar-container">
         <div className="primary-sidebar">
@@ -96,10 +99,11 @@ export default class ResourceCard extends Component {
               onClick={() => this.setFilterPanel(t.key)}
             >
               {t.label}
-              <div className="arrow-icon" style={{ backgroundImage: `url(${arrow})` }}></div>
+              <div className="arrow-icon" style={{ backgroundImage: `url(${arrowIcon})` }}></div>
             </div>
           )
           }
+          <ResetFilter></ResetFilter>
         </div>
         <FilterSecondarySidebar open={this.state.showSideMenu} width="250"
         title={this.state.currentFilterPanel ? filtersList.find(e => e.key === this.state.currentFilterPanel).label : ''}
@@ -113,4 +117,19 @@ export default class ResourceCard extends Component {
         </FilterSecondarySidebar>
       </div>
   }
+}
+
+const ResetFilter = ({filters}) =>{
+  const history = useHistory();
+
+  function handleClick() {
+    history.push("/explore")
+  }
+
+  return (
+    <div className="reset-filter" onClick={handleClick}>
+      <div className="icon" style={{ backgroundImage: `url(${resetIcon})` }}></div>
+      Reset filter
+    </div>
+    )
 }
