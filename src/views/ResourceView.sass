@@ -1,3 +1,5 @@
+@import "../variables.sass";
+
 .resource-page
   overflow: auto
   height: 100%
@@ -6,14 +8,21 @@
     position: relative
     padding: 20px 5%
     border-bottom: 1px solid #000
+    @media (max-width:$mq-mobile)
+      flex-direction: column
     .resource-preview
       flex: 0 0 60%
+      @media (max-width:$mq-mobile)
+        flex: 0 0 100%
+        margin-bottom: 20px
       img
         width: 100%
 
     .resource-sideinfo-container
       flex: 0 0 38%
       margin-left: auto
+      @media (max-width:$mq-mobile)
+        flex: 0 0 100%
 
   .related-resources
     text-align: center

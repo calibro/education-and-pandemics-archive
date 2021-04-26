@@ -1,8 +1,16 @@
+@import "../variables.sass";
+
 .sidebar-container
   height: 100%
   position: relative
   width: 250px
   z-index: 5
+  @media (max-width:$mq-mobile)
+    position: absolute
+    left: -250px
+    transition: 0.4s ease;
+    &.open
+      left: 0px
 
 .primary-sidebar
   border-right: 2px solid #575449

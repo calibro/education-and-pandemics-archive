@@ -1,24 +1,26 @@
+@import "../variables.sass";
+
 .resource-map
   position: relative
   width: 100%
   height: 100%
   display: flex
+  @media (max-width:$mq-mobile)
+    flex-direction: column
   .map-container
     flex: 0 0 60%
+    @media (max-width:$mq-mobile)
+      flex: 0 0 100%
+      max-height: 35vh
+      overflow: hidden
   .map-sidebar
     flex: 0 0 40%
     overflow: hidden
     height: 100%
+    @media (max-width:$mq-mobile)
+      flex: 0 0 100%
     .resource-list
       overflow: auto
       height: 100%
       .resouce-grid-container
         grid-template-columns: 1fr 1fr
-
-.map-cicle
-  display: flex
-  align-items: center
-  justify-content: center
-  color: #fff
-  border-radius: 50%
-  background-color: #B87333
