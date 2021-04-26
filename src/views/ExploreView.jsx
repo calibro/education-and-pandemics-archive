@@ -15,6 +15,7 @@ import listIcon from '../assets/list.svg';
 import listIconActive from '../assets/list-active.svg';
 import circleIcon from '../assets/circle.svg';
 import circleIconActive from '../assets/circle-active.svg';
+import moment from 'moment';
 
 
 
@@ -53,6 +54,10 @@ export default class ExploreView extends Component {
         formulas.push('OR(FIND(LOWER("'+ this.props.params[paramKey] + '"), LOWER({Summary (limit 500)})), '+
         'FIND(LOWER("'+ this.props.params[paramKey] + '"), LOWER({Title ID})))')
 
+      } else if(paramKey === 'dateFrom' && moment(+this.props.params[paramKey]).isValid()) {
+        formulas.push('OR(IS_AFTER({Production date}, "'+moment(+this.props.params[paramKey]).format('YYYY-MM-DD')+'"))')
+      } else if(paramKey === 'dateTo' && moment(+this.props.params[paramKey]).isValid()) {
+        formulas.push('OR(IS_BEFORE({Production date}, "'+moment(+this.props.params[paramKey]).format('YYYY-MM-DD')+'"))')
       } else {
         let filterVal = Array.isArray(this.props.params[paramKey]) ? this.props.params[paramKey] : [this.props.params[paramKey]]
         formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
