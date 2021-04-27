@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useMemo } from 'react';
-import ReactMapGL, {Source, Layer} from '!react-map-gl';
+
+import ReactMapGL, {Source, Layer} from 'react-map-gl';
 import _ from "lodash";
 import {clusterLayer, clusterCountLayer, unclusteredPointLayer, ghostPoints} from './layers';
 

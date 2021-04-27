@@ -15,6 +15,8 @@ import qs from 'qs'
 
 import Airtable from 'airtable'
 
+import mapboxgl from "mapbox-gl";
+
 import {
   Switch,
   Route,
@@ -23,6 +25,11 @@ import {
 } from "react-router-dom";
 
 import { QueryParamProvider } from 'use-query-params';
+
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 
 class App extends Component {
 	state = {
