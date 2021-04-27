@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useMemo } from 'react';
-import ReactMapGL, {Source, Layer} from 'react-map-gl';
+import ReactMapGL, {Source, Layer} from '!react-map-gl';
 import _ from "lodash";
 import {countriesLayer} from './layers';
 import countries from '../../assets/geojson/countries.geo.json'
