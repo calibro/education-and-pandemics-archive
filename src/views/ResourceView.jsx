@@ -6,6 +6,8 @@ import * as embedUtils from '../utils/embed'
 import ResourceExtendedInfo from '../components/ResourceExtendedInfo'
 import RelatedResources from '../components/RelatedResources'
 
+import ImageGallery from 'react-image-gallery';
+
 
 const ResourceView = ({resourceId}) => {
   const [resource, setResource] = useState({});
@@ -68,8 +70,18 @@ const ResourceView = ({resourceId}) => {
     if (isEmbed) {
       resourceContent = generateEmbedCode()
     } else {
-      // Add gallery if it has more images?
-      resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
+      if (resource.fields['Attachments'].length > 1) {
+        let images = resource.fields['Attachments'].map(att => {
+          return {
+            original: att.url,
+            thumbnail: att.thumbnails.large.url
+          }
+        })
+        resourceContent = <ImageGallery items={images} infinite={false} showNav={false} showFullscreenButton={false} showPlayButton={false}/>
+      }
+      else {
+        resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
+      }
     }
     return resourceContent
   }
