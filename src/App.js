@@ -13,7 +13,7 @@ import {CollectionProvider} from './utils/collection'
 
 import qs from 'qs'
 
-import Airtable from 'airtable'
+import {base} from './utils/airtable'
 
 import mapboxgl from "mapbox-gl";
 
@@ -43,9 +43,6 @@ class App extends Component {
 	}
   componentDidMount() {
     var self = this
-		var base = new Airtable({
-			apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-		}).base('appyRkLfkVtG84rMU');
 
     base('Type list').select({
         view: 'Grid view',

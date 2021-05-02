@@ -29,7 +29,7 @@ function LocationsMap({archiveItems, onUpdate}) {
     zoom: 1
   });
 
-  const itemsWithLocation = archiveItems.filter(i => i.fields['Location'] && i.fields['Location_long'][0] && i.fields['Location_lat'][0])
+  const itemsWithLocation = archiveItems.filter(i => i.fields['Location'] && i.fields['Location_long'] && i.fields['Location_lat'])
   
   const onMapMove = event => {
     if(map.current){

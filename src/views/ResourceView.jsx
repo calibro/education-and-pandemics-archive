@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './ResourceView.sass';
-import Airtable from 'airtable'
+import {base, MAIN_TABLE} from '../utils/airtable'
 import {Spinner} from 'react-bootstrap'
 import * as embedUtils from '../utils/embed'
 import ResourceExtendedInfo from '../components/ResourceExtendedInfo'
@@ -14,11 +14,8 @@ const ResourceView = ({resourceId}) => {
   useEffect(() => {
     viewRef.current && viewRef.current.scrollTo(0, 0)
     setResource({})
-    var base = new Airtable({
-      apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-    }).base('appyRkLfkVtG84rMU');
-    
-    base('Data Sample').find(resourceId, function(err, record) {
+
+    base(MAIN_TABLE).find(resourceId, function(err, record) {
       if (err) { console.error(err); return; }
       setResource(record)
     })
@@ -67,17 +64,12 @@ const ResourceView = ({resourceId}) => {
 
   const ResourceMedia = () => {
     let resourceContent = <span>No item format defined</span>
-    let format = resource.fields['item_format']
-    if (format === 'Website') {
-      resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
-    } 
-    else if (format === 'Image') {
-      // Here maybe a gallery?
-      resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
-    }
-    else if (format === 'Embed') {
-      // Here maybe a gallery?
+    let isEmbed = resource.fields['Embed']
+    if (isEmbed) {
       resourceContent = generateEmbedCode()
+    } else {
+      // Add gallery if it has more images?
+      resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
     }
     return resourceContent
   }

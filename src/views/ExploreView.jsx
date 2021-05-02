@@ -7,7 +7,6 @@ import ResourcesMap from '../components/ResourcesMap'
 
 import FilterSidebar from '../components/FilterSidebar'
 import CurrentFiltersRecap from '../components/CurrentFiltersRecap'
-import Airtable from 'airtable'
 import FilterSearch from '../components/FilterSearch'
 import rectIcon from '../assets/rectangle.svg';
 import rectIconActive from '../assets/rectangle-active.svg';
@@ -17,6 +16,7 @@ import circleIcon from '../assets/circle.svg';
 import circleIconActive from '../assets/circle-active.svg';
 import moment from 'moment';
 
+import {base, MAIN_TABLE} from '../utils/airtable'
 
 
 export default class ExploreView extends Component {
@@ -43,9 +43,6 @@ export default class ExploreView extends Component {
     self.setState({
       loading: true
     });
-		var base = new Airtable({
-			apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-		}).base('appyRkLfkVtG84rMU');
 
     let formulas = []
 
@@ -65,11 +62,12 @@ export default class ExploreView extends Component {
         formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
       }
     })
+    formulas.push('REGEX_MATCH({Status}, "Completed")')
     let formula = formulas.length > 0 ? 'AND(' + formulas.join(', ') +')' : ''
 
     //OR(RECORD_ID() = ‘recRjdJSziwMjfhO8’, RECORD_ID() = ‘recdRonUzKAIMPOxb’)
-    base('Data Sample').select({
-        view: 'Grid view',
+    base(MAIN_TABLE).select({
+        view: 'Table',
         filterByFormula: formula
     }).firstPage(function(err, records) {
         if (err) { console.error(err); return; }

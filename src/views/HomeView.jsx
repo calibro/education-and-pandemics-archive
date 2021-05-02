@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import './HomeView.sass';
-import Airtable from 'airtable'
+import {base, MAIN_TABLE} from '../utils/airtable'
 import {Link} from 'react-router-dom'
 import ResourcesSlider from '../components/ResourcesSlider'
 import {Spinner} from 'react-bootstrap'
@@ -18,13 +18,11 @@ export default class HomeView extends Component {
     self.setState({
       loading: true
     });
-		var base = new Airtable({
-			apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-		}).base('appyRkLfkVtG84rMU');
 
     //OR(RECORD_ID() = ‘recRjdJSziwMjfhO8’, RECORD_ID() = ‘recdRonUzKAIMPOxb’)
-    base('Data Sample').select({
-        view: 'Grid view',
+    base(MAIN_TABLE).select({
+        view: 'Table',
+        filterByFormula: 'REGEX_MATCH({Status}, "Completed")'
     }).firstPage(function(err, records) {
         if (err) { console.error(err); return; }
         self.setState({

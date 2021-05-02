@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Airtable from 'airtable'
+
+import {base, MAIN_TABLE} from '../utils/airtable'
+
 import ResourcesSlider from '../components/ResourcesSlider'
 import {Spinner} from 'react-bootstrap'
 
@@ -18,9 +20,6 @@ const RelatedResources = ({resource}) => {
 
   useEffect(() => {
     setLoading(true)
-    var base = new Airtable({
-      apiKey:process.env.REACT_APP_AIRTABLE_API_KEY
-    }).base('appyRkLfkVtG84rMU');
 
     let formula = ''
     if (activeThemeOption) {
@@ -28,9 +27,10 @@ const RelatedResources = ({resource}) => {
     } else {
       formula = 'FIND("'+resource.fields['Type_name']+'",{Type})'
     }
-
-    base('Data Sample').select({
-      view: 'Grid view',
+    formula = 'AND(REGEX_MATCH({Status}, "Completed"), '+ formula +')'
+    
+    base(MAIN_TABLE).select({
+      view: 'Table',
       filterByFormula: formula
     }).firstPage(function(err, records) {
         if (err) { console.error(err); return; }
