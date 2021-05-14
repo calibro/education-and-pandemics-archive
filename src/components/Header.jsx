@@ -1,6 +1,6 @@
 import * as React from 'react';
 import logo from '../assets/logo.svg';
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import './Header.sass'
 import {useCollection} from '../utils/collection'
 
@@ -12,18 +12,18 @@ const Header = () => {
   let CollectionCount = () => {
     const [collection] = useCollection()
     const count = collection.length
-    return <Link to="/collection" className="header-link">
+    return <NavLink activeClassName="active" to="/collection" className="header-link">
               <div className="collection-icon" style={{ backgroundImage: count > 0 ? `url(${collectionIconFull})`: `url(${collectionIcon})` }}></div>
               {count}
-          </Link>
+          </NavLink>
   }
 
   return (
       <div className="header">
         <Link to="/"><img src={logo} alt="logo"/></Link>
         <div className="header-links">
-          <Link to="/explore" className="header-link">Explore</Link>
-          <Link to="/about" className="header-link">About</Link>
+          <NavLink to="/explore" activeClassName="active" className="header-link">Explore</NavLink>
+          <NavLink to="/about" activeClassName="active" className="header-link">About</NavLink>
           <a href="#" className="header-link">Submit</a>
           <CollectionCount />
         </div>
