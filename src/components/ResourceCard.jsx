@@ -18,7 +18,10 @@ const ResourceCard = ({item, flick}) => {
   return (
     <div onClick={handleClick} className="resource-card">
         <div className="thumb" style={{backgroundImage: `url(${resourceImage})`}}></div>
-        <div className="card-title">{item.fields['Title ID']}</div>
+        <div className="card-title">
+          <div className="title-text">{item.fields['Title ID']}</div>
+          <div className="title-underline"><span>{item.fields['Title ID']}</span></div>
+        </div>
 
         {item.fields.Pandemic_name && (
             <div className="card-badge">{item.fields.Pandemic_name.join(',')}</div>

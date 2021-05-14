@@ -105,7 +105,14 @@ const ResourceExtendedInfo = ({resource}) => {
               )}
             </div>
             {resource.fields['URL'] && <div className="resource-source">
-              <a href={resource.fields['URL']}>GO TO THE SOURCE</a>
+              <a class="animated-btn" href={resource.fields['URL']}>GO TO THE SOURCE
+                <svg class="animated-btn-stroke" viewBox="0 0 215 62">
+                  <use href="#line"></use>
+                </svg>
+                <svg class="animated-btn-stroke" viewBox="0 0 215 62">
+                  <use href="#line"></use>
+                </svg>
+              </a>
             </div>
             }
 
