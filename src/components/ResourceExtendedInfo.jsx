@@ -1,6 +1,7 @@
 import './ResourceExtendedInfo.sass';
 import {useCollection} from '../utils/collection'
 import moment from 'moment'
+import AnimatedLink from './commons/AnimatedLink'
 
 import collectionIconAdd from '../assets/collection-add.svg';
 import collectionIconSaved from '../assets/collection-active.svg';
@@ -104,16 +105,9 @@ const ResourceExtendedInfo = ({resource}) => {
                 }
               )}
             </div>
-            {resource.fields['URL'] && <div className="resource-source">
-              <a class="animated-btn" href={resource.fields['URL']}>GO TO THE SOURCE
-                <svg class="animated-btn-stroke" viewBox="0 0 215 62">
-                  <use href="#line"></use>
-                </svg>
-                <svg class="animated-btn-stroke" viewBox="0 0 215 62">
-                  <use href="#line"></use>
-                </svg>
-              </a>
-            </div>
+            {resource.fields['URL'] && <a className="resource-source" href={resource.fields['URL']}>
+                <AnimatedLink text="GO TO RESOURCE"></AnimatedLink>
+            </a>
             }
 
         </div>

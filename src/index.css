@@ -14,8 +14,8 @@ body {
   font-family: "FolioBT-Book", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 18px;
+  line-height: 22px;
 }
 
 code {

@@ -13,17 +13,51 @@
       padding: 50px
       width: 50%
       border-right: 1px solid #000
+      display: flex
+      flex-direction: column
+      align-items: center
       @media (max-width:$mq-mobile)
         width: 100%
+        padding: 5%
         border-right: none
         border-bottom: 1px solid #000
-      h1
+      img
+        max-width: 485px
+        width: 90%
+      .subtitle
+        margin-top: 40px
+        font-family: "P22MackinacMedium";
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+        letter-spacing: 0em;
+        text-align: left;
+        max-width: 485px
+        width: 90%
+
+
     .about-block
       width: 50%
-      padding: 50px
+      display: flex
+      flex-direction: column
       @media (max-width:$mq-mobile)
-        width: 100%
+        width: 90%
+        padding: 5%
         border-right: none
+      .big-link
+        flex: 1 1 auto
+        width: 100%
+        font-size: 22px;
+        line-height: 26px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        &:hover
+          text-decoration: none
+        &:not(:last-child)
+          border-bottom: 1px solid #000
       .home-links
         display: flex
         margin-top: 40px
@@ -43,3 +77,16 @@
       margin: 30px
       text-align: center
       text-transform: uppercase
+      font-size: 16px;
+      line-height: 20px;
+      color: #575449;
+  .ische-credits
+    margin-top: 40px
+    color: #575449
+    font-size: 22px;
+    line-height: 26px;
+    display: flex
+    align-items: center
+    justify-content: center
+    img
+      margin-left: 8px
