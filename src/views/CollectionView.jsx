@@ -4,6 +4,7 @@ import {useCollection} from '../utils/collection'
 import ResourceExtendedInfo from '../components/ResourceExtendedInfo'
 import { CSVLink } from "react-csv";
 import * as Papa from 'papaparse'
+import collectionIconAdd from '../assets/collection-add.svg';
 
 const CollectionView = () => {
   const [collection] = useCollection()
@@ -23,6 +24,14 @@ const CollectionView = () => {
         )
       }
       </div>
+      {
+        collection.length == 0 && (
+          <div className="empty-collection">
+            Your collections is empty.<br/>
+            Click on <img src={collectionIconAdd}></img> to save items here. 
+          </div>
+        )
+      }
     </div>
   )
 }

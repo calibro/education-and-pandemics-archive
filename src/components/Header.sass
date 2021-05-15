@@ -24,6 +24,18 @@
       position: relative
       &:first-child
         border-left: 1px solid #000
+      &:hover
+        text-decoration: none
+        &::after
+          content: ''
+          display: block
+          position: absolute
+          bottom: 0px
+          left: 0px
+          background: #B87333
+          width: 100%
+          height: 5px
+          opacity: 0.5
       &.active
         &::after
           content: ''
@@ -34,6 +46,8 @@
           background: #B87333
           width: 100%
           height: 5px
+          opacity: 1
+
 
     .collection-icon
       width: 20px
