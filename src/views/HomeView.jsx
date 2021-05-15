@@ -54,7 +54,7 @@ export default class HomeView extends Component {
                 <div className="loading"><Spinner animation="border" />Loading resources</div>
                 :
                 (this.state.archiveItems.length > 0 ? 
-                  <ResourcesSlider items={this.state.archiveItems}></ResourcesSlider>
+                  <ResourcesSlider items={this.state.archiveItems} infinite={true}></ResourcesSlider>
                   : 
                   <div>No resources</div>
                 )

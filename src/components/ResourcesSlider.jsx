@@ -4,11 +4,11 @@ import ResourceCard from './ResourceCard'
 import './ResourcesSlider.sass';
  
 
-const ResourcesSlider = ({items}) => {
+const ResourcesSlider = ({items, infinite}) => {
   let flick =  React.createRef();
 
   return (
-      <div className="resource-slider">
+      <div className={`resource-slider ${infinite && 'infinite'}`} >
         <div className="fade-left"></div>
         <Flicking
             tag = "div"
@@ -17,7 +17,7 @@ const ResourcesSlider = ({items}) => {
             classPrefix = "eg-flick"
             deceleration = {0.0075}
             horizontal = {true}
-            circular = {true}
+            circular = {infinite}
             infiniteThreshold = {0}
             lastIndex = {Infinity}
             threshold = {40}

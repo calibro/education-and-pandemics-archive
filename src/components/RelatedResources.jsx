@@ -16,16 +16,31 @@ const RelatedResources = ({resource}) => {
     return { value: t, label: t }
   }) : []
 
+  const [typesOptions, setTypesOptions] = useState([]);
+
+  if(typesOptions.length == 0){
+    base('Type list').select({
+      view: 'Grid view',
+      filterByFormula: '{Count}>0'
+    }).firstPage(function(err, data) {
+        if (err) { console.error(err); return; }
+        setTypesOptions(data.map(r => {
+          return { value: r.fields['Type'], label: r.fields['Type'] }
+        }))
+    })
+  }
+
   const [activeThemeOption, setActiveThemeOption] = useState(themesOptions[0]);
+  const [activeTypeOption, setActiveTypeOption] = useState({value: resource.fields['Type_name'], label:resource.fields['Type_name']});
 
   useEffect(() => {
     setLoading(true)
 
     let formula = ''
     if (activeThemeOption) {
-      formula = 'AND(FIND("'+resource.fields['Type_name']+'",{Type}), FIND("'+activeThemeOption.value+'",{Themes}))'
+      formula = 'AND(FIND("'+activeTypeOption.value+'",{Type}), FIND("'+activeThemeOption.value+'",{Themes}))'
     } else {
-      formula = 'FIND("'+resource.fields['Type_name']+'",{Type})'
+      formula = 'FIND("'+activeTypeOption.value+'",{Type})'
     }
     formula = 'AND(REGEX_MATCH({Status}, "Published"), '+ formula +')'
     
@@ -37,18 +52,17 @@ const RelatedResources = ({resource}) => {
         setRelatedResources(records)
         setLoading(false)
     })
-  }, [activeThemeOption])
+  }, [activeThemeOption, activeTypeOption])
 
-  
 
   return (
     <div className="related-resources-panel">
       <div className="related-options">
-        <span>Explore other</span><strong>{resource.fields['Type_name']}</strong><span>in theme</span>
+        <span>Explore other</span>
         <Select classNamePrefix="custom-select" 
-          options={themesOptions} 
-          onChange={setActiveThemeOption}
-          value={activeThemeOption}
+          options={typesOptions} 
+          onChange={setActiveTypeOption}
+          value={activeTypeOption}
           isSearchable={false}
           theme={theme => ({
             ...theme,
@@ -59,12 +73,27 @@ const RelatedResources = ({resource}) => {
               primary25: '#FBFAF7'
             },
           })}/>
+        <span>in theme</span>
+          <Select classNamePrefix="custom-select" 
+            options={themesOptions} 
+            onChange={setActiveThemeOption}
+            value={activeThemeOption}
+            isSearchable={false}
+            theme={theme => ({
+              ...theme,
+              colors: {
+                ...theme.colors,
+                primary: '#F3EFE6',
+                neutral0: '#FFFFF',
+                primary25: '#FBFAF7'
+              },
+            })}/>
       </div>
       {loading ? 
         <div className="loading"><Spinner animation="border" />Loading resources</div>
       :
       (relatedResources.length > 0 ? 
-        <ResourcesSlider items={relatedResources}></ResourcesSlider> 
+        <ResourcesSlider items={relatedResources} infinite={false}></ResourcesSlider> 
         : 
         <div>No related resources</div>
       )
