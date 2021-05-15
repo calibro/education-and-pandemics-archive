@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import ReactMapGL, {Source, Layer} from 'react-map-gl';
 import _ from "lodash";
@@ -31,7 +31,10 @@ function CountriesMap({archiveItems, onUpdate}) {
   });
 
   const itemsWithCountry = archiveItems.filter(i => i.fields['Country'])
-  
+  useEffect(() => {
+    onUpdate(itemsWithCountry)
+  }, []);
+
   const onMapMove = event => {
     if(map.current){
       var features =  map.current.queryRenderedFeatures()

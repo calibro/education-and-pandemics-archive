@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 import ReactMapGL, {Source, Layer} from 'react-map-gl';
 import _ from "lodash";
@@ -28,9 +28,13 @@ function LocationsMap({archiveItems, onUpdate}) {
     height: '100%',
     zoom: 1
   });
+  debugger
 
   const itemsWithLocation = archiveItems.filter(i => i.fields['Location'] && i.fields['Location_long'] && i.fields['Location_lat'])
-  
+  useEffect(() => {
+    onUpdate(itemsWithLocation)
+  }, []);
+
   const onMapMove = event => {
     if(map.current){
       var features =  map.current.queryRenderedFeatures()
