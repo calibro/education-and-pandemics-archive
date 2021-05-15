@@ -9,16 +9,17 @@
   height: calc(100vh - 50px)
 
 .main-content
-  overflow: auto
-  max-height: calc(100vh - 50px)
+  overflow: hidden
   width: 100%
-
+  display: flex
+  flex-direction: column
   .content-top-bar
+    flex: 0 0 95px
     display: flex
     color: #575449
     align-items: center
     width: 100%
-    padding: 30px
+    padding: 15px 30px
     .results-count
       font-size: 16px
     .results-view-type
@@ -41,7 +42,6 @@
 
   .content-filters-summary
     display: flex
-    margin-bottom: 15px
     padding: 0px 30px
     .filter-recap-item
       cursor: pointer
@@ -51,3 +51,4 @@
       background: #F3EFE6
       padding: 4px 8px
       margin-right: 6px
+      margin-bottom: 10px

@@ -117,9 +117,11 @@ export default class ExploreView extends Component {
                   <FilterSearch></FilterSearch>
                 </div>
               </div>
-              <div className="content-filters-summary">
-                {this.props.params && this.renderParamsRecap()}
-              </div>
+              {this.props.params &&
+                <div className="content-filters-summary">
+                  {this.renderParamsRecap()}
+                </div>
+              }
               {this.state.loading ? 
                 <div className="loading"><Spinner animation="border" />Loading resources</div>
                   :
