@@ -15,17 +15,25 @@ const ResourceCard = ({item, flick}) => {
   
   const resourceImage = item.fields.Attachments && item.fields.Attachments.length > 0 ? item.fields.Attachments[0].thumbnails.large.url : docPlaceholder
 
+  let title = item.fields['Title ID']
+  if(title.length > 60) {
+    title = title.substring(0, 57) + ' (...)'
+  }
+
+  let pandemics = item.fields.Pandemic_name ? item.fields.Pandemic_name.join(',') : ''
+  if(pandemics.length > 30) {
+    pandemics = pandemics.substring(0, 27) + ' (...)'
+  }
+
   return (
     <div onClick={handleClick} className="resource-card">
         <div className="thumb" style={{backgroundImage: `url(${resourceImage})`}}></div>
         <div className="card-title">
-          <div className="title-text">{item.fields['Title ID']}</div>
-          <div className="title-underline"><span>{item.fields['Title ID']}</span></div>
+          <div className="title-text">{title}</div>
+          <div className="title-underline"><span>{title}</span></div>
         </div>
 
-        {item.fields.Pandemic_name && (
-            <div className="card-badge">{item.fields.Pandemic_name.join(',')}</div>
-        )}
+        <div className="card-badge">{pandemics}</div>
     </div>
   )
 }

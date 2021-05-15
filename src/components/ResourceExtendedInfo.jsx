@@ -2,6 +2,7 @@ import './ResourceExtendedInfo.sass';
 import {useCollection} from '../utils/collection'
 import moment from 'moment'
 import AnimatedLink from './commons/AnimatedLink'
+import ReactTooltip from 'react-tooltip';
 
 import collectionIconAdd from '../assets/collection-add.svg';
 import collectionIconSaved from '../assets/collection-active.svg';
@@ -81,7 +82,9 @@ const ResourceExtendedInfo = ({resource}) => {
     const isInCollection = collection.find(item => item.id === resource.id)
     return <div className="collection-icon" 
                 onClick={toggleFromCollection}
+                data-tip={isInCollection ? "Remove item" : "Save item"}
                 style={{ backgroundImage: !isInCollection ? `url(${collectionIconAdd})`: `url(${collectionIconSaved})` }}>
+                  <ReactTooltip effect="solid"/>
             </div>
   }
   return <div className="resource-extended-info">
@@ -98,7 +101,7 @@ const ResourceExtendedInfo = ({resource}) => {
                   <div className="meta-title">{info.label}</div>
                   <div className="meta-value">{
                     info.format ? info.format(resource.fields[info.field]) : (
-                      Array.isArray(resource.fields[info.field]) ? resource.fields[info.field].join(', ') : resource.fields[info.field]
+                      Array.isArray(resource.fields[info.field]) ? resource.fields[info.field].join(', ') : (resource.fields[info.field] || '/')
                     )}
                   </div>
                 </div>
@@ -109,7 +112,6 @@ const ResourceExtendedInfo = ({resource}) => {
                 <AnimatedLink text="GO TO RESOURCE"></AnimatedLink>
             </a>
             }
-
         </div>
 }
 
