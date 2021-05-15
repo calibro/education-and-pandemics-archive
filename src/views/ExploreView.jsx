@@ -62,20 +62,24 @@ export default class ExploreView extends Component {
         formulas.push('OR(' + filterVal.map(v => 'FIND("'+v+'",{' + paramKey + '})').join(', ') +')')
       }
     })
-    formulas.push('REGEX_MATCH({Status}, "Completed")')
+    formulas.push('REGEX_MATCH({Status}, "Published")')
     let formula = formulas.length > 0 ? 'AND(' + formulas.join(', ') +')' : ''
-
+    
+    let allRecords = []
     //OR(RECORD_ID() = ‘recRjdJSziwMjfhO8’, RECORD_ID() = ‘recdRonUzKAIMPOxb’)
     base(MAIN_TABLE).select({
         view: 'Table',
         filterByFormula: formula
-    }).firstPage(function(err, records) {
+    }).eachPage(function page(records, fetchNextPage) {
+        allRecords = allRecords.concat(records)
+        fetchNextPage();
+    }, function done(err) {
         if (err) { console.error(err); return; }
         self.setState({
-					archiveItems: records,
-          loading: false
-				});
-    })
+          loading: false,
+          archiveItems: allRecords,
+        })
+    });
   }
   renderParamsRecap () {
     return Object.keys(this.props.params)

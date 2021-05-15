@@ -27,7 +27,7 @@ const RelatedResources = ({resource}) => {
     } else {
       formula = 'FIND("'+resource.fields['Type_name']+'",{Type})'
     }
-    formula = 'AND(REGEX_MATCH({Status}, "Completed"), '+ formula +')'
+    formula = 'AND(REGEX_MATCH({Status}, "Published"), '+ formula +')'
     
     base(MAIN_TABLE).select({
       view: 'Table',
