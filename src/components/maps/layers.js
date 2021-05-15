@@ -50,6 +50,12 @@ export const countriesLayer = {
   type: 'fill',
   paint: {
     'fill-color': '#B87333',
-    'fill-opacity': 0.8
+    'fill-opacity': {
+      property: 'intensity',
+      stops: [
+        [0, 0.2],
+        [1, 0.95]
+      ]
+    },
   }
 };

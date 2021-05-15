@@ -8,10 +8,16 @@ import countries from '../../assets/geojson/countries.geo.json'
 
 function makeCountrGeoJSON(items) {
   const countriesWithData = _.uniq(items.map(i => i.fields['Country_a3'][0]))
-  return {
+  let geojson = {
     ...countries,
     features: countries.features.filter(f => countriesWithData.includes(f.id))
   }
+  let maxItems = _.max(countriesWithData.map(c => items.filter(i => i.fields['Country_a3'] == c).length))
+  geojson.features.forEach(f => {
+    f.properties.intensity = items.filter(i => i.fields['Country_a3'] == f.id).length / maxItems
+    f.properties.id = f.id
+  })
+  return geojson
 }
 
 
@@ -29,8 +35,7 @@ function CountriesMap({archiveItems, onUpdate}) {
   const onMapMove = event => {
     if(map.current){
       var features =  map.current.queryRenderedFeatures()
-      let visibleCountryIds = features.filter(f=> f.layer.id == countriesLayer.id).map(f => f.id)
-      //TO FIX
+      var visibleCountryIds = features.map(f => f.properties.id).filter(f => f)
       onUpdate(itemsWithCountry.filter(i => visibleCountryIds.includes(i.fields['Country_a3'][0])))
     }
   }
