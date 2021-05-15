@@ -5,5 +5,7 @@
   grid-template-columns: 1fr 1fr 1fr 1fr//repeat(auto-fit, minmax(240px, 1fr));
   border-top: 1px solid black;
   border-left: 1px solid black;
+  @media (max-width:$mq-xl)
+    grid-template-columns: 1fr 1fr 1fr
   @media (max-width:$mq-mobile)
     grid-template-columns: 1fr 1fr

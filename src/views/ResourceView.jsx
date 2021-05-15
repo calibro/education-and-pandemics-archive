@@ -5,6 +5,9 @@ import {Spinner} from 'react-bootstrap'
 import * as embedUtils from '../utils/embed'
 import ResourceExtendedInfo from '../components/ResourceExtendedInfo'
 import RelatedResources from '../components/RelatedResources'
+import { useHistory } from "react-router-dom";
+
+import arrow from '../assets/arrow.svg';
 
 import ImageGallery from 'react-image-gallery';
 
@@ -12,6 +15,7 @@ import ImageGallery from 'react-image-gallery';
 const ResourceView = ({resourceId}) => {
   const [resource, setResource] = useState({});
   let viewRef = React.createRef()
+  let history = useHistory();
 
   useEffect(() => {
     viewRef.current && viewRef.current.scrollTo(0, 0)
@@ -35,13 +39,13 @@ const ResourceView = ({resourceId}) => {
       // YouTube
       if (source.hostname.includes('youtu')) {
         let youtubeId = embedUtils.getYoutubeId(source.href)
-        code = <iframe width="100%" height="360"  title="content" src={'https://www.youtube.com/embed/' + youtubeId} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        code = <iframe title="content" src={'https://www.youtube.com/embed/' + youtubeId} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       }
 
       // VIMEO
       else if (source.hostname.includes('vimeo')) {
         let vimeoId = embedUtils.getVimeoId(source.href)
-        code = <iframe width="100%" height="360" title="content" src={"https://player.vimeo.com/video/" + vimeoId} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
+        code = <iframe title="content" src={"https://player.vimeo.com/video/" + vimeoId} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen></iframe>
       }
 
       // Archive
@@ -61,7 +65,7 @@ const ResourceView = ({resourceId}) => {
       }
     }
 
-    return code
+    return <div className="iframe-container">{code}</div>
   }
 
   const ResourceMedia = () => {
@@ -70,17 +74,19 @@ const ResourceView = ({resourceId}) => {
     if (isEmbed) {
       resourceContent = generateEmbedCode()
     } else {
-      if (resource.fields['Attachments'].length > 1) {
-        let images = resource.fields['Attachments'].map(att => {
-          return {
-            original: att.url,
-            thumbnail: att.thumbnails.large.url
-          }
-        })
-        resourceContent = <ImageGallery items={images} infinite={false} showNav={false} showFullscreenButton={false} showPlayButton={false}/>
-      }
-      else {
-        resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
+      if (resource.fields['Attachments']){
+        if (resource.fields['Attachments'].length > 1) {
+          let images = resource.fields['Attachments'].map(att => {
+            return {
+              original: att.url,
+              thumbnail: att.thumbnails.large.url
+            }
+          })
+          resourceContent = <ImageGallery items={images} infinite={false} showNav={false} showFullscreenButton={false} showPlayButton={false}/>
+        }
+        else {
+          resourceContent = <img src={resource.fields['Attachments'][0].url} alt={resource.fields['Title ID']}></img>
+        }
       }
     }
     return resourceContent
@@ -90,11 +96,18 @@ const ResourceView = ({resourceId}) => {
     (
     <div className="resource-page" ref={viewRef}>
       <div className="resource-view">
+        <div className="navigate-back" onClick={()=> history.goBack()}>
+          <div className="arrow-icon" 
+            style={{ backgroundImage: `url(${arrow})` }}
+          ></div>
+          <span>BACK TO THE RESULTS</span>
+        </div>
         <div className="resource-preview">
           <ResourceMedia></ResourceMedia>
         </div>
         <div className="resource-sideinfo-container">
           <ResourceExtendedInfo resource={resource}></ResourceExtendedInfo>
+          <a className="mailto" href="mailto:archive.project@ische.org">Contact us if you know more about this item</a>
         </div>
       </div>
       <div className="related-resources">
