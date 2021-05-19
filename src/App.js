@@ -1,151 +1,194 @@
-import './App.sass';
-import './components/CustomSelect.sass';
+import "./App.sass";
+import "./components/CustomSelect.sass";
 
-import {Component} from 'react'
-import HomeView from './views/HomeView'
-import ResourceView from './views/ResourceView'
-import ExploreView from './views/ExploreView'
-import AboutView from './views/AboutView'
-import CollectionView from './views/CollectionView'
+import { Component } from "react";
+import HomeView from "./views/HomeView";
+import ResourceView from "./views/ResourceView";
+import ExploreView from "./views/ExploreView";
+import AboutView from "./views/AboutView";
+import CollectionView from "./views/CollectionView";
 
-import Header from './components/Header'
-import {CollectionProvider} from './utils/collection'
-
-import qs from 'qs'
-
-import {base} from './utils/airtable'
-
-import mapboxgl from "mapbox-gl";
-
-import {
-  Switch,
-  Route,
-  withRouter,
-  Redirect
-} from "react-router-dom";
-
-import { QueryParamProvider } from 'use-query-params';
-
-// @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
-
+import Header from "./components/Header";
+import { CollectionProvider } from "./utils/collection";
+import qs from "qs";
+import { base } from "./utils/airtable";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
 
 class App extends Component {
-	state = {
-		types: [],
+  state = {
+    types: [],
     pandemics: [],
     languages: [],
     tags: [],
     countries: [],
     themes: [],
-    cities: []
-	}
+    cities: [],
+  };
   componentDidMount() {
-    var self = this
+    var self = this;
 
-    base('Type list').select({
-        view: 'Grid view',
-        filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+    base("Type list")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-					types: data
-				});
-    });
-    base('Pandemic list').select({
-        view: 'Grid view',
-        filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
-        self.setState({
-          pandemics: data
+          types: data,
         });
-    });
-    base('Language list').select({
-      view: 'Grid view',
-      filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+      });
+    base("Pandemic list")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-          languages: data
+          pandemics: data,
         });
-    });
-    base('Tag list').select({
-      view: 'Grid view',
-      filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+      });
+    base("Language list")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-          tags: data
+          languages: data,
         });
-    });
-    base('Countries List').select({
-      view: 'Grid view',
-      filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+      });
+    base("Tag list")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-          countries: data
+          tags: data,
         });
-    });
-    base('Themes list').select({
-      view: 'Grid view',
-      filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+      });
+    base("Countries List")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-          themes: data
+          countries: data,
         });
-    });
-    base('Location List').select({
-      view: 'Grid view',
-      filterByFormula: '{Count}>0'
-    }).firstPage(function(err, data) {
-        if (err) { console.error(err); return; }
+      });
+    base("Themes list")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
         self.setState({
-          cities: data
+          themes: data,
         });
-    });
+      });
+    base("Location List")
+      .select({
+        view: "Grid view",
+        filterByFormula: "{Count}>0",
+      })
+      .firstPage(function (err, data) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+        self.setState({
+          cities: data,
+        });
+      });
   }
   render() {
     return (
-        <QueryParamProvider ReactRouterRoute={Route}>
-          <CollectionProvider>
-
-            <div className="App">
-              {
-                this.props.location.pathname !=='/' ? <Header/>:null
-              }
-              <div className="app-content">
-                <Switch>
-                  <Route exact path="/explore/resource/:resourceId" render={(props)=>{
-                    return <ResourceView resourceId={props.match.params.resourceId}/>
-                  }} />
-                  <Route path="/explore" render={(props) => {
-                      let urlParams = qs.parse(props.location.search.slice(1))
-                      return  <ExploreView filters={this.state} params={urlParams}></ExploreView>
-                    }}/>
-                  <Route path="/about" render={() => {
-                      return  <AboutView></AboutView>
-                    }}/>
-                  <Route path="/collection" render={() => {
-                      return  <CollectionView></CollectionView>
-                    }}/>
-                  <Route exact path="/" render={() => {
-                      return  <HomeView></HomeView>
-                    }}/>
-                  <Route path="/">
-                      <Redirect to="/"/>
-                  </Route>
-                </Switch>
-              </div>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <CollectionProvider>
+          <div className="App d-flex flex-column">
+            {this.props.location.pathname !== "/" ? <Header /> : null}
+            <div className="app-content flex-grow-1 flex-shrink-1 overflow-hidden">
+              <Switch>
+                <Route
+                  exact
+                  path="/explore/resource/:resourceId"
+                  render={(props) => {
+                    return (
+                      <ResourceView
+                        resourceId={props.match.params.resourceId}
+                      />
+                    );
+                  }}
+                />
+                <Route
+                  path="/explore"
+                  render={(props) => {
+                    let urlParams = qs.parse(props.location.search.slice(1));
+                    return (
+                      <ExploreView
+                        filters={this.state}
+                        params={urlParams}
+                      ></ExploreView>
+                    );
+                  }}
+                />
+                <Route
+                  path="/about"
+                  render={() => {
+                    return <AboutView></AboutView>;
+                  }}
+                />
+                <Route
+                  path="/collection"
+                  render={() => {
+                    return <CollectionView></CollectionView>;
+                  }}
+                />
+                <Route
+                  exact
+                  path="/"
+                  render={() => {
+                    return <HomeView></HomeView>;
+                  }}
+                />
+                <Route path="/">
+                  <Redirect to="/" />
+                </Route>
+              </Switch>
             </div>
-          </CollectionProvider>
-        </QueryParamProvider>
+          </div>
+        </CollectionProvider>
+      </QueryParamProvider>
     );
   }
 }
-
 
 export default withRouter(App);

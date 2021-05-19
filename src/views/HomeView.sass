@@ -1,94 +1,16 @@
-@import "../variables.sass";
+@import "../variables.sass"
+.home-container
+  overflow-y: auto
+  overflow-x: hidden
+.logo-block
+  border-bottom: 1px solid
+.big-link
+  text-decoration: none
 
-.home-view
-  overflow: auto
-  height: 100%
-  .top-content
-    display: flex
-    margin: auto
-    border-bottom: 1px solid #000
-    @media (max-width:$mq-mobile)
-      flex-direction: column
+.slider-container
+  min-height: 300px
 
-    .logo-block
-      padding: 50px
-      width: 50%
-      border-right: 1px solid #000
-      display: flex
-      flex-direction: column
-      align-items: center
-      @media (max-width:$mq-mobile)
-        width: 100%
-        padding: 5%
-        border-right: none
-        border-bottom: 1px solid #000
-      img
-        max-width: 485px
-        width: 90%
-      .subtitle
-        margin-top: 40px
-        font-family: "P22MackinacMedium";
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 26px;
-        letter-spacing: 0em;
-        text-align: left;
-        max-width: 485px
-        width: 90%
-
-
-    .about-block
-      width: 50%
-      display: flex
-      flex-direction: column
-      @media (max-width:$mq-mobile)
-        width: 90%
-        padding: 5%
-        border-right: none
-      .big-link
-        flex: 1 1 auto
-        width: 100%
-        font-size: 22px;
-        line-height: 26px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        &:hover
-          text-decoration: none
-        &:not(:last-child)
-          border-bottom: 1px solid #000
-      .home-links
-        display: flex
-        margin-top: 40px
-        .home-link
-          display: block
-          padding: 15px 40px
-          border: 1px solid #000
-          color: #000
-          transition: all 0.4s
-          &:hover
-            background-color: #B87333
-            color: #fff
-  .latest-content
-    position: relative
-    min-height: 300px
-    .latest-title
-      margin: 30px
-      text-align: center
-      text-transform: uppercase
-      font-size: 16px;
-      line-height: 20px;
-      color: #575449;
-  .ische-credits
-    margin-top: 40px
-    color: #575449
-    font-size: 22px;
-    line-height: 26px;
-    display: flex
-    align-items: center
-    justify-content: center
-    margin-bottom: 30px
-    img
-      margin-left: 8px
+@media (min-width: 768px)
+  .logo-block
+    border-bottom: none
+    border-right: 1px solid

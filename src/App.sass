@@ -1,17 +1,24 @@
-@import "./variables.sass";
-@import "~react-image-gallery/styles/css/image-gallery.css";
+@import "./variables.sass"
+@import "~react-image-gallery/styles/css/image-gallery.css"
+@import '~bootstrap/scss/bootstrap'
+
+body
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-rendering: optimizeLegibility
+
+body,
+html,
+#root
+  height: 100%
+  overflow: hidden
 
 .App
-  text-align: left
-  max-height: 100vh
-  height: 100vh
+  height: 100%
   overflow: hidden
   background-color: #FBFAF7
 
 .app-content
-  max-height: calc(100vh - 50px)
-  height: 100%
-  
 
 .loading
   position: absolute
