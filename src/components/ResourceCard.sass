@@ -1,3 +1,5 @@
+@import "../variables.sass"
+
 .resource-card
   height: 300px
   border-right: 1px solid var(--bs-dark)
@@ -36,8 +38,9 @@
   top: -2px
   opacity: 0
   transition: opacity 0.4s ease
+  font-family: $headings-main-font-family
   & span
-    background: linear-gradient(to top, var(--underline-color), var(--underline-color)) repeat-x left 0.9em/100% 10px
+    background: linear-gradient(to top, var(--underline-color), var(--underline-color)) repeat-x left 0.75em/100% 10px
     color: transparent
 
 @media (min-width: 768px)
