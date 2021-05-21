@@ -1,0 +1,28 @@
+{
+    "intro":"Lorem ipsum",
+    "about":"Lorem ipsum",
+    "explore":{
+        "title":"how to explore the archive",
+        "sections":[
+            {"title":"filter your search", "desc": "lorem ipsum"},
+            {"title":"save what you like", "desc": "lorem ipsum"},
+            {"title":"explore the items", "desc": "lorem ipsum"}
+        ]
+    },
+    "sources":{
+        "title":"useful sources and tips",
+        "desc":"lorem ipsum",
+        "links":[
+            {"title":"test", "url":"https://google.com", "desc":"lorem ipsum"},
+            {"title":"test2", "url":"https://google.com", "desc":"lorem ipsum2"}
+        ]
+    },
+    "contacts":{
+        "desc":"lorem ipsum",
+        "people":[
+            {"title":"Professor of Something", "mail":"ciao@mail.it"},
+            {"title":"Professor of Someone", "mail":"ciao2@mail.it"}
+        ]
+    }
+
+}
