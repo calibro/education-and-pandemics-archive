@@ -1,5 +1,5 @@
 .collection-view
-  padding: 30px
+  padding: 15px
   overflow: auto
   height: 100%
   text-align: center
@@ -10,24 +10,29 @@
     align-items: center
     position: relative
     h2
-      font-family: "P22MackinacMedium";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 30px;
-      text-align: center;
-      color: #000000;
+      font-family: "P22MackinacMedium"
+      font-style: normal
+      font-weight: normal
+      font-size: 30px
+      text-align: center
+      color: #000000
     .export-link
-      position: absolute
-      right: 0px
-      color:#575449
+      color: #575449
   .collection-grid
     display: grid
-    grid-template-columns: 1fr 1fr 1fr
-    grid-gap: 30px
+    grid-template-columns: 1fr
+    grid-gap: 15px
   .empty-collection
-    font-family: "P22MackinacMedium";
-    font-size: 22px;
-    line-height: 32px;
-    text-align: center;
-    color: #575449;
+    font-family: "P22MackinacMedium"
+    font-size: 22px
+    line-height: 32px
+    text-align: center
+    color: #575449
     margin-top: 20%
+
+@media (min-width: 768px)
+  .collection-view
+    padding: 30px
+    .collection-grid
+      grid-template-columns: 1fr 1fr 1fr
+      grid-gap: 30px

@@ -20,7 +20,7 @@ const CurrentFiltersRecap = ({ filterKey }) => {
     }
     return (
       <span
-        class="badge rounded-pill filter-recap-item text-body me-2 mb-3"
+        className="badge rounded-pill filter-recap-item text-body me-2 mb-3"
         onClick={() => onRemove(value)}
       >
         {displayValue} <span>x</span>

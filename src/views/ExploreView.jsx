@@ -160,7 +160,7 @@ export default class ExploreView extends Component {
             toggleOpen={() => this.toggleSideBar()}
           ></FilterSidebar>
         </div>
-        <div className="main-content overflow-hidden w-100 d-flex flex-column">
+        <div className="main-content position-relative overflow-hidden w-100 d-flex flex-column">
           <div className="content-top-bar d-flex text-black-50 align-items-center w-100 p-3 p-md-4 flex-grow-0 flex-shrink-0">
             <div className="d-block d-md-none border-end border-dark pe-1 me-1">
               <div

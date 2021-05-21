@@ -13,8 +13,8 @@ function ResourcesMap({ archiveItems }) {
   //map.current && map.current.on('move', onMapMove)
   return (
     <div className="resource-map d-flex position-relative overflow-hidden flex-grow-1 flex-shrink-1 border-top border-dark">
-      <div className="row g-0">
-        <div className="col-8 map-container h-100">
+      <div className="row g-0 w-100">
+        <div className="col-12 col-md-8 map-container">
           {mapType == "locations" && (
             <LocationsMap
               archiveItems={archiveItems}
@@ -29,81 +29,37 @@ function ResourcesMap({ archiveItems }) {
           )}
         </div>
 
-        <div className="col-4 h-100 map-sidebar">
-          <div className="map-options">
+        <div className="col-12 col-md-4 map-sidebar d-flex flex-column">
+          <div className="map-options p-3 shadow flex-grow-0 flex-shrink-0">
             Map view
             <label>
               <input
                 type="radio"
-                name="map-type-option"
+                name="map-type-option1"
                 value="countries"
                 checked={mapType === "countries"}
                 onChange={() => setMapType("countries")}
-                className="map-option-input"
+                className="form-check-input ms-2 me-1"
               />
               COUNTRIES
             </label>
             <label>
               <input
                 type="radio"
-                name="map-type-option"
+                name="map-type-option2"
                 value="locations"
                 checked={mapType === "locations"}
                 onChange={() => setMapType("locations")}
-                className="map-option-input"
+                className="form-check-input ms-2 me-1"
               />
               LOCATIONS
             </label>
           </div>
-          <div className="resource-list">
+          <div className="resource-list h-100 overflow-auto flex-grow-1 flex-shrink-1">
             <ResourcesGrid archiveItems={filteredItems}></ResourcesGrid>
           </div>
         </div>
       </div>
-      {/* <div className="map-container">
-        {mapType == "locations" && (
-          <LocationsMap
-            archiveItems={archiveItems}
-            onUpdate={setFilteredItems}
-          ></LocationsMap>
-        )}
-        {mapType == "countries" && (
-          <CountriesMap
-            archiveItems={archiveItems}
-            onUpdate={setFilteredItems}
-          ></CountriesMap>
-        )}
-      </div>
-      <div className="map-sidebar">
-        <div className="map-options">
-          Map view
-          <label>
-            <input
-              type="radio"
-              name="map-type-option"
-              value="countries"
-              checked={mapType === "countries"}
-              onChange={() => setMapType("countries")}
-              className="map-option-input"
-            />
-            COUNTRIES
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="map-type-option"
-              value="locations"
-              checked={mapType === "locations"}
-              onChange={() => setMapType("locations")}
-              className="map-option-input"
-            />
-            LOCATIONS
-          </label>
-        </div>
-        <div className="resource-list">
-          <ResourcesGrid archiveItems={filteredItems}></ResourcesGrid>
-        </div>
-      </div> */}
     </div>
   );
 }

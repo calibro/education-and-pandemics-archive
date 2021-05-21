@@ -102,7 +102,7 @@ export default class HomeView extends Component {
             </div>
           </div>
           <div className="row">
-            <div class="col-12">
+            <div className="col-12">
               <div className="my-5 text-black-50">
                 <p className="text-center lead">
                   A project by{" "}

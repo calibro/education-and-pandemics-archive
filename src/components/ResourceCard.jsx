@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import docPlaceholder from "../assets/resource-placeholder-doc.svg";
 
-const ResourceCard = ({ item, flick }) => {
+const ResourceCard = ({ item, flick, fixedWidth }) => {
   const history = useHistory();
 
   function handleClick() {
@@ -32,6 +32,7 @@ const ResourceCard = ({ item, flick }) => {
   return (
     <div
       className="resource-card d-flex flex-column p-2 overflow-hidden"
+      style={{ width: fixedWidth ? 300 : "auto" }}
       onClick={handleClick}
     >
       <img

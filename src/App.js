@@ -1,5 +1,6 @@
 import "./App.sass";
 import "./components/CustomSelect.sass";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import { Component } from "react";
 import HomeView from "./views/HomeView";
