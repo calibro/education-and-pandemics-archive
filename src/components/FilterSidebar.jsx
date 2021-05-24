@@ -1,135 +1,203 @@
-import {Component} from 'react'
-import './FilterSidebar.sass';
+import { Component } from "react";
+import "./FilterSidebar.sass";
 import { useHistory } from "react-router-dom";
 
-import FilterBlock from './FilterBlock'
-import FilterDates from './FilterDates'
+import FilterBlock from "./FilterBlock";
+import FilterDates from "./FilterDates";
 
-import FilterSecondarySidebar from './FilterSecondarySidebar'
-import arrowIcon from '../assets/arrow.svg';
-import resetIcon from '../assets/reset-icon.svg';
+import FilterSecondarySidebar from "./FilterSecondarySidebar";
+import arrowIcon from "../assets/arrow.svg";
+import resetIcon from "../assets/reset-icon.svg";
 
 const filtersList = [
   {
-    key: 'pandemics',
-    label: 'Pandemics'
+    key: "pandemics",
+    label: "Pandemics",
   },
   {
-    key: 'themes',
-    label: 'Themes'
+    key: "themes",
+    label: "Themes",
   },
   {
-    key: 'tags',
-    label: 'Tags'
+    key: "tags",
+    label: "Tags",
   },
   {
-    key: 'resource_type',
-    label: 'Types'
+    key: "resource_type",
+    label: "Types",
   },
   {
-    key: 'languages',
-    label: 'Languages'
+    key: "languages",
+    label: "Languages",
   },
   {
-    key: 'countries',
-    label: 'Countries'
+    key: "countries",
+    label: "Countries",
   },
   {
-    key: 'locations',
-    label: 'Locations'
+    key: "locations",
+    label: "Locations",
   },
   {
-    key: 'dates',
-    label: 'Dates'
-  }
-]
+    key: "dates",
+    label: "Dates",
+  },
+];
 
 export default class ResourceCard extends Component {
   state = {
     showSideMenu: false,
-    currentFilterPanel: null
-	}
+    currentFilterPanel: null,
+  };
 
   setShowSideMenu(show) {
     this.setState({
-      showSideMenu: show
+      showSideMenu: show,
     });
   }
 
-  setFilterPanel (value) {
+  setFilterPanel(value) {
     this.setState({
-      currentFilterPanel: value
-    })
-    value && this.setShowSideMenu(true)
+      currentFilterPanel: value,
+    });
+    value && this.setShowSideMenu(true);
   }
 
-  currentFilterContent () {
+  currentFilterContent() {
     switch (this.state.currentFilterPanel) {
-      case 'pandemics':
-        return <FilterBlock blockTitle="Pandemics" filterName="Pandemic" labelBy="Name" filterItems={this.props.filters.pandemics}></FilterBlock>
-      case 'themes':
-        return <FilterBlock blockTitle="Themes" filterName="Themes" labelBy="Theme" filterItems={this.props.filters.themes}></FilterBlock>
-      case 'resource_type':
-        return <FilterBlock blockTitle="Resource Type" filterName="Type" labelBy="Type" filterItems={this.props.filters.types}></FilterBlock>
-      case 'tags':
-        return <FilterBlock blockTitle="Tags" filterName="Tags" labelBy="Tag" filterItems={this.props.filters.tags}></FilterBlock>
-      case 'languages':
-        return <FilterBlock blockTitle="Languages" filterName="Language" labelBy="Language" filterItems={this.props.filters.languages}></FilterBlock>
-      case 'countries':
-        return <FilterBlock blockTitle="Countries" filterName="Country" labelBy="Country" filterItems={this.props.filters.countries}></FilterBlock>
-      case 'locations':
-        return <FilterBlock blockTitle="Locations" filterName="Location" labelBy="City" filterItems={this.props.filters.cities}></FilterBlock>
-      case 'dates':
-        return <FilterDates></FilterDates>
+      case "pandemics":
+        return (
+          <FilterBlock
+            blockTitle="Pandemics"
+            filterName="Pandemic"
+            labelBy="Name"
+            filterItems={this.props.filters.pandemics}
+          ></FilterBlock>
+        );
+      case "themes":
+        return (
+          <FilterBlock
+            blockTitle="Themes"
+            filterName="Themes"
+            labelBy="Theme"
+            filterItems={this.props.filters.themes}
+          ></FilterBlock>
+        );
+      case "resource_type":
+        return (
+          <FilterBlock
+            blockTitle="Resource Type"
+            filterName="Type"
+            labelBy="Type"
+            filterItems={this.props.filters.types}
+          ></FilterBlock>
+        );
+      case "tags":
+        return (
+          <FilterBlock
+            blockTitle="Tags"
+            filterName="Tags"
+            labelBy="Tag"
+            filterItems={this.props.filters.tags}
+          ></FilterBlock>
+        );
+      case "languages":
+        return (
+          <FilterBlock
+            blockTitle="Languages"
+            filterName="Language"
+            labelBy="Language"
+            filterItems={this.props.filters.languages}
+          ></FilterBlock>
+        );
+      case "countries":
+        return (
+          <FilterBlock
+            blockTitle="Countries"
+            filterName="Country"
+            labelBy="Country"
+            filterItems={this.props.filters.countries}
+          ></FilterBlock>
+        );
+      case "locations":
+        return (
+          <FilterBlock
+            blockTitle="Locations"
+            filterName="Location"
+            labelBy="City"
+            filterItems={this.props.filters.cities}
+          ></FilterBlock>
+        );
+      case "dates":
+        return <FilterDates></FilterDates>;
       default:
-        return <div></div>
+        return <div></div>;
     }
-
   }
-
 
   render() {
-    return <div className="sidebar-container">
+    const { open, toggleOpen } = this.props;
+    return (
+      <div className={`sidebar-container ${open ? "open" : ""}`}>
         <div className="primary-sidebar">
-          <div className="sidebar-title">Filters</div>
-          {
-          filtersList.map(t =>
+          <div className="sidebar-title d-flex justify-content-between align-items-center">
+            <span>Filters</span>
+            <span
+              className="arrow-icon reverse d-block d-md-none"
+              style={{ backgroundImage: `url(${arrowIcon})` }}
+              onClick={toggleOpen}
+            ></span>
+          </div>
+          {filtersList.map((t) => (
             <div
-              className={`filter-type ${this.state.currentFilterPanel === t.key ? "active" : " "}`} 
+              className={`filter-type ${
+                this.state.currentFilterPanel === t.key ? "active" : " "
+              }`}
               onClick={() => this.setFilterPanel(t.key)}
             >
               {t.label}
-              <div className="arrow-icon" style={{ backgroundImage: `url(${arrowIcon})` }}></div>
+              <div
+                className="arrow-icon"
+                style={{ backgroundImage: `url(${arrowIcon})` }}
+              ></div>
             </div>
-          )
-          }
+          ))}
           <ResetFilter></ResetFilter>
         </div>
-        <FilterSecondarySidebar open={this.state.showSideMenu} width="250"
-        title={this.state.currentFilterPanel ? filtersList.find(e => e.key === this.state.currentFilterPanel).label : ''}
-        onClose={() => {
-          this.setShowSideMenu(false)
-          this.setFilterPanel(false)
-        }}
-        children={
-          this.currentFilterContent()
-        }>
-        </FilterSecondarySidebar>
+        <FilterSecondarySidebar
+          open={this.state.showSideMenu}
+          width="250"
+          title={
+            this.state.currentFilterPanel
+              ? filtersList.find((e) => e.key === this.state.currentFilterPanel)
+                  .label
+              : ""
+          }
+          onClose={() => {
+            this.setShowSideMenu(false);
+            this.setFilterPanel(false);
+          }}
+          children={this.currentFilterContent()}
+        ></FilterSecondarySidebar>
       </div>
+    );
   }
 }
 
-const ResetFilter = ({filters}) =>{
+const ResetFilter = ({ filters }) => {
   const history = useHistory();
 
   function handleClick() {
-    history.push("/explore")
+    history.push("/explore");
   }
 
   return (
     <div className="reset-filter" onClick={handleClick}>
-      <div className="icon" style={{ backgroundImage: `url(${resetIcon})` }}></div>
+      <div
+        className="icon"
+        style={{ backgroundImage: `url(${resetIcon})` }}
+      ></div>
       Reset filter
     </div>
-    )
-}
+  );
+};

@@ -1,53 +1,42 @@
-@import "../variables.sass";
-
-.header
-  display: flex
-  width: 100%
+.header-links
+  margin-left: auto
   height: 50px
-  align-items: center
-  padding-left: 25px
-  border-bottom: 2px solid #000000
-  .header-links
-    margin-left: auto
-    display: flex
+  border-top: 1px solid #000
+  .header-link
     height: 100%
+    width: 100%
+    border-left: 1px solid #000
+    color: #000
     align-items: center
-    @media (max-width:$mq-mobile)
-      display: none
-    .header-link
-      height: 100%
-      border-right: 1px solid #000
-      color: #000
-      align-items: center
-      display: flex
-      padding: 0px 25px
-      position: relative
-      &:first-child
-        border-left: 1px solid #000
-      &:hover
-        text-decoration: none
-        &::after
-          content: ''
-          display: block
-          position: absolute
-          bottom: 0px
-          left: 0px
-          background: #B87333
-          width: 100%
-          height: 5px
-          opacity: 0.5
-      &.active
-        &::after
-          content: ''
-          display: block
-          position: absolute
-          bottom: 0px
-          left: 0px
-          background: #B87333
-          width: 100%
-          height: 5px
-          opacity: 1
-
+    justify-content: center
+    display: flex
+    position: relative
+    text-decoration: none
+    &:first-of-type
+      border-left: none
+    &:hover
+      text-decoration: none
+      &::after
+        content: ''
+        display: block
+        position: absolute
+        bottom: 0px
+        left: 0px
+        background: #B87333
+        width: 100%
+        height: 5px
+        opacity: 0.5
+    &.active
+      &::after
+        content: ''
+        display: block
+        position: absolute
+        bottom: 0px
+        left: 0px
+        background: #B87333
+        width: 100%
+        height: 5px
+        opacity: 1
 
     .collection-icon
       width: 20px
@@ -55,3 +44,10 @@
       background-size: contain
       background-repeat: no-repeat
       margin-right: 5px
+
+@media (min-width: 768px)
+  .header-links
+    border-top: none
+    .header-link
+      &:first-of-type
+        border-left: 1px solid #000

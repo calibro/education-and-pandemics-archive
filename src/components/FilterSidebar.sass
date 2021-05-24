@@ -1,4 +1,4 @@
-@import "../variables.sass";
+@import "../variables.sass"
 
 .sidebar-container
   height: 100%
@@ -8,7 +8,7 @@
   @media (max-width:$mq-mobile)
     position: absolute
     left: -250px
-    transition: 0.4s ease;
+    transition: left 0.4s ease
     &.open
       left: 0px
 
@@ -23,12 +23,12 @@
   overflow: auto
 
   .sidebar-title
-    font-family: "P22MackinacMedium";
+    font-family: "P22MackinacMedium"
     padding: 8px 20px
     color: #575449
     height: 40px
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 18px
+    line-height: 22px
     border-bottom: 0.5px solid #575449
 
   .filter-type
@@ -37,8 +37,8 @@
     display: flex
     align-items: center
     border-bottom: 0.5px solid #575449
-    font-size: 15px;
-    line-height: 22px;
+    font-size: 15px
+    line-height: 22px
     text-transform: uppercase
     &.active
       background-color: #F3EFE6
@@ -46,9 +46,9 @@
       margin-left: auto
   .reset-filter
     padding: 8px 20px
-    font-size: 18px;
-    line-height: 22px;
-    color: #575449;
+    font-size: 18px
+    line-height: 22px
+    color: #575449
     display: flex
     align-items: center
     cursor: pointer
@@ -60,15 +60,13 @@
       background-size: cover
       margin-right: 5px
 
-
-
 .secondary-sidebar
   position: absolute
   background: #F3EFE6
-  height: 100% !important;
-  max-height: 100%;
-  flex-direction: column;
-  transition: 0.4s ease;
+  height: 100% !important
+  max-height: 100%
+  flex-direction: column
+  transition: 0.4s ease
   border-right: 2px solid #575449
 
   .secondary-sidebar-header
@@ -82,8 +80,8 @@
       text-align: center
       width: 100%
       font-family: "P22MackinacMedium"
-      font-size: 18px;
-      line-height: 22px;
+      font-size: 18px
+      line-height: 22px
     .arrow-icon
       cursor: pointer
   .secondary-sidebar-content
@@ -122,10 +120,10 @@
           width: 100%
           input
             width: 100%
-            background: #F3EFE6;
-            border: 1px solid #757575;
-            box-sizing: border-box;
-            border-radius: 3px;
+            background: #F3EFE6
+            border: 1px solid #757575
+            box-sizing: border-box
+            border-radius: 3px
             outline: none
             line-height: 30px
         .react-datepicker
@@ -134,9 +132,8 @@
           .react-datepicker__triangle
             border-bottom-color: #FBFAF7
           .react-datepicker__month-text--keyboard-selected
-            background: #F3EFE6;
+            background: #F3EFE6
             color: #000
-
 
 .arrow-icon
   background-position: center center
@@ -145,3 +142,17 @@
   height: 7px
   &.reverse
     transform: rotate(180deg)
+
+.secondary-sidebar
+  left: -250px
+  transition: left 0.4s ease
+  z-index: 11
+  &.open
+    left: 0
+
+@media (min-width: 768px)
+  .secondary-sidebar
+    left: 0
+    z-index: 9
+    &.open
+      left: 250px

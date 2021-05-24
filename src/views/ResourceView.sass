@@ -1,4 +1,4 @@
-@import "../variables.sass";
+@import "../variables.sass"
 
 .resource-page
   overflow: auto
@@ -10,13 +10,15 @@
     @media (max-width:$mq-mobile)
       flex-direction: column
     .navigate-back
-      border-right: 1px solid #000
+      border-right: 1px solid var(--bs-dark)
       max-width: 50px
       flex: 0 0 50px
       display: flex
       align-items: center
       cursor: pointer
       position: relative
+      @media (max-width:$mq-mobile)
+        border-right: 1px none
       .arrow-icon
         height: 20px
         width: 12px
@@ -26,42 +28,42 @@
         position: absolute
         top: 15px
         left: 15px
-        transform: rotate(-180deg);
+        transform: rotate(-180deg)
 
       span
-        display: block;
-        transform: rotate(-90deg);
-        width: 100%;
-        white-space: nowrap;
-        
+        display: block
+        transform: rotate(-90deg)
+        width: 100%
+        white-space: nowrap
 
     .resource-preview
       flex: 1 1 60%
-      height: 100%;
-      position: sticky;
-      top: 20px;
-      margin-bottom: 60px;
+      height: 100%
+      position: sticky
+      top: 20px
+      margin-bottom: 60px
       padding: 0px 20px
       @media (max-width:$mq-mobile)
         flex: 0 0 100%
         margin-bottom: 40px
         position: relative
+        top: 10px
       .iframe-container
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        padding-top: 56.25%;
+        position: relative
+        overflow: hidden
+        width: 100%
+        padding-top: 56.25%
         iframe
-          position: absolute;
-          top: 0;
-          left: 0;
-          bottom: 0;
-          right: 0;
-          width: 100%;
-          height: 100%;
+          position: absolute
+          top: 0
+          left: 0
+          bottom: 0
+          right: 0
+          width: 100%
+          height: 100%
       img
         width: 100%
-        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5))
 
     .resource-sideinfo-container
       flex: 1 1 38%
@@ -73,9 +75,9 @@
         flex: 0 0 100%
       a.mailto
         text-align: center
-        font-size: 16px;
-        line-height: 20px;
-        color: #575449;
+        font-size: 16px
+        line-height: 20px
+        color: #575449
         width: 100%
         display: inline-block
 
@@ -87,7 +89,7 @@
       position: relative
       .related-options
         margin-bottom: 30px
-        display: flex
+        // display: flex
         justify-content: center
         align-items: center
         span

@@ -1,2 +1,25 @@
-$mq-mobile: 768px;
-$mq-xl: 1200px;
+// @import "~bootstrap/scss/functions"
+// @import "~bootstrap/scss/variables"
+// @import "~bootstrap/scss/mixins"
+
+@font-face
+  font-family: "FolioBT-Book"
+  src: url("./assets/fonts/FolioBTBook/font.woff2") format("woff2"),url("./assets/fonts/FolioBTBook/font.woff") format("woff")
+
+@font-face
+  font-family: "P22MackinacMedium"
+  src: url("./assets/fonts/P22MackinacMedium/font.woff2") format("woff2"), url("./assets/fonts/P22MackinacMedium/font.woff") format("woff")
+
+$font-family-sans-serif: 'FolioBT-Book', system-ui, -apple-system, 'Segoe UI', Roboto,'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji','Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default
+//$font-family-base: 'FolioBT-Book', system-ui, -apple-system, 'Segoe UI', Roboto,'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji','Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !default
+$primary: #B87333
+// $custom-colors: ("primary": $primary)
+// $theme-colors: map-merge($theme-colors, $custom-colors)
+
+$headings-main-font-family: 'P22MackinacMedium', system-ui, -apple-system, 'Segoe UI', Roboto,'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji','Segoe UI Symbol', 'Noto Color Emoji' !default
+
+h1,h2,h3
+  font-family: $headings-main-font-family
+
+$mq-mobile: 768px
+$mq-xl: 1200px
