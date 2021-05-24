@@ -72,9 +72,13 @@ const Header = () => {
             >
               About
             </NavLink>
-            <a href="#" className="header-link px-2 px-md-4">
+            <NavLink
+              to="/submit"
+              activeClassName="active"
+              className="header-link px-2 px-md-4"
+            >
               Submit
-            </a>
+            </NavLink>
             <CollectionCount />
           </div>
         </div>

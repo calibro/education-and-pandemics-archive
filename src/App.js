@@ -8,6 +8,7 @@ import ResourceView from "./views/ResourceView";
 import ExploreView from "./views/ExploreView";
 import AboutView from "./views/AboutView";
 import CollectionView from "./views/CollectionView";
+import SubmitView from "./views/SubmitView";
 
 import Header from "./components/Header";
 import { CollectionProvider } from "./utils/collection";
@@ -165,6 +166,12 @@ class App extends Component {
                   path="/about"
                   render={() => {
                     return <AboutView></AboutView>;
+                  }}
+                />
+                <Route
+                  path="/submit"
+                  render={() => {
+                    return <SubmitView></SubmitView>;
                   }}
                 />
                 <Route

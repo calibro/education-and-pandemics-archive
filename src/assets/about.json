@@ -1,27 +1,28 @@
 {
-    "intro":"Lorem ipsum",
-    "about":"Lorem ipsum",
+    "intro":"The COVID-19 pandemic raised our awareness of living at an extremely threatening moment in history and prompted historical curiosity. At the same time, it represents an opportunity to think about how the present can be historically preserved and to imagine how our work as historians of education will continue after this disruptive crisis. The Education & Pandemics Web Archive is a crowdsourcing initiative for historians of education worldwide interested in contributing with content on varied thematic dimensions and health crises related to education (also beyond the walls of the classroom) and using it to reflect about education in times of pandemics. Diseases and wars often are perceived as catastrophes of the same kind: they force us to face up to our vulnerability, long-standing ignorance, and lack of means of prevention, they elicit horror, monotony, and exhaustion, and they encourage us to envisage a better future from which we imagine looking back while celebrating our achievements. This may explain why the COVID-19 crisis immediately prompted people to find out how our ancestors successfully dealt with similar health crises. The plague and the so-called Spanish flu are being held up as prominent examples of historical threats to humanity. People were/are interested in how past health crises were fought, how isolation, new hygiene measures, and vaccines had an enormous impact not only on social life, public institutions, education, the performing arts, science, ethics, civilisation, and political culture, but also on technology, communication, mobility, migration, markets, and trade, and how the state and other legal authorities became the primary agents of control. However, key historical reference points have been highly selective and recent pandemics (e.g. swine flu and HIV/AIDS) have been silenced. Much like colonial concepts of infection, disease has been represented as a distant and alien external threat requiring a collective change in behaviour, containment, and immunisation, rather than something that can bring about structural ecological and social change. The impetus to historically preserve our experiences in times of COVID-19 is accompanied by an urge to reflect upon our lifestyles, often characterised by over-consumption, our ill-treatment of the planet, wastage of natural resources, our ethical standards, and the limits of human agency to control damage, and considering how these dimensions may relate to education. It has therefore been said that the current crisis and its documentation mark a clear-cut historical shift that will be analysed by future historians. This shift will most probably also bring about methodological and technological changes that affect our ways of working as historians of education. We invite historians of education from around the globe to contribute to and reflect on new ways of studying the past and imagine how present and future research on education and pandemics should or will be carried out – also in terms of developing new relationships between the past and our anticipated futures. It was mainly for that reason that the Education and Pandemics Web Archive was initiated by Karin Priem and Ian Grosvenor. Karin and Ian are currently working with an international team of young historians of education who contribute to the project with their own perspectives and ideas: Inês Félix, Stefanie Kesteloot, Amy Kobayashi, Yver Melchor, Lilli Riettiens, and Rafaela Silva Rabelo.",
+    "about":"The International Standing Conference for the History of Education (ISCHE) was established in 1978 to foster research in the History of Education, facilitate international contact, intellectual exchange, and cooperation around the globe. ISCHE is future-oriented and pursues its aims by History of Education conferences, working groups, networks, and publications; also to promote the field internationally. A central concern of ISCHE is to support the next generation of historians of education, develop new research perspectives and contribute to a better understanding of educational challenges from a worldwide and innovative historical perspective.",
     "explore":{
         "title":"how to explore the archive",
         "sections":[
-            {"title":"filter your search", "desc": "lorem ipsum"},
-            {"title":"save what you like", "desc": "lorem ipsum"},
-            {"title":"explore the items", "desc": "lorem ipsum"}
+            {"title":"filter your search", "icon":"filter", "desc": "lorem ipsum"},
+            {"title":"save what you like","icon":"save", "desc": "lorem ipsum"},
+            {"title":"export the items", "icon":"export", "desc": "lorem ipsum"}
         ]
     },
     "sources":{
         "title":"useful sources and tips",
-        "desc":"lorem ipsum",
+        "desc":"Links to readings and other interesting material",
         "links":[
             {"title":"test", "url":"https://google.com", "desc":"lorem ipsum"},
             {"title":"test2", "url":"https://google.com", "desc":"lorem ipsum2"}
         ]
     },
     "contacts":{
-        "desc":"lorem ipsum",
+        "desc":"",
         "people":[
-            {"title":"Professor of Something", "mail":"ciao@mail.it"},
-            {"title":"Professor of Someone", "mail":"ciao2@mail.it"}
+            {"title":"Karin Priem, University of Luxembourg, Luxembourg", "mail":"karin.priem [at] uni.lu"},
+            {"title":"Ami Kobayashi, University Koblenz-Landau, Germany", "mail":"kobayashi [at] uni-landau.de"},
+            {"title":"Lilli Riettiens, University of Cologne, Germany", "mail":"L.Riettiens [at] uni-koeln.de"}
         ]
     }
 

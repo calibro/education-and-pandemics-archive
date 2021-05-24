@@ -3,7 +3,16 @@ import "./AboutView.sass";
 import logo from "../assets/logoE&PA.svg";
 import logoIsche from "../assets/logo_ische.svg";
 import data from "../assets/about.json";
-console.log(data);
+import saveIcon from "../assets/save.svg";
+import filterIcon from "../assets/filter.svg";
+import exportIcon from "../assets/export.svg";
+
+const icons = {
+  saveIcon,
+  filterIcon,
+  exportIcon,
+};
+
 export default class HomeView extends Component {
   render() {
     return (
@@ -26,17 +35,27 @@ export default class HomeView extends Component {
               <a href="https://www.ische.org/" target="_blank" rel="noreferrer">
                 <img className="my-3" src={logoIsche} alt="logo-ische" />
               </a>
-              <p className="">{data.about}</p>
+              <p>{data.about}</p>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5 mx-1 mx-0-md">
             <div className="col-12 offset-0 offset-md-1 col-md-10 border border-dark">
               <h5 className="text-uppercase my-3">{data.explore.title}</h5>
               <div className="row border-top border-dark">
                 {data.explore.sections.map((section) => {
                   return (
                     <div className="explore col-md-4" key={section.title}>
-                      <h3 className="fs-5 my-2">{section.title}</h3>
+                      <h3 className="fs-5 my-2 d-flex align-items-center">
+                        <span
+                          className="icons"
+                          style={{
+                            backgroundImage: `url(${
+                              icons[section.icon + "Icon"]
+                            })`,
+                          }}
+                        ></span>
+                        <span>{section.title}</span>
+                      </h3>
                       <p>{section.desc}</p>
                     </div>
                   );
@@ -44,12 +63,12 @@ export default class HomeView extends Component {
               </div>
             </div>
           </div>
-          <div className="row mt-5">
+          <div className="row mt-5 mx-1 mx-0-md">
             <div className="col-12 offset-0 offset-md-1 col-md-10 border border-dark">
               <h5 className="text-uppercase my-3">{data.sources.title}</h5>
             </div>
-            <div className="offset-md-1 col-md-5 border-start border-bottom border-end border-dark">
-              <p className="col-md-6 col-12 mt-2">{data.sources.desc}</p>
+            <div className="offset-md-1 col-md-5 border-responsive-2">
+              <p className="mt-2">{data.sources.desc}</p>
             </div>
             <div className="col-md-5 border border-top-0 border-dark">
               {data.sources.links.map((link) => {
@@ -64,7 +83,7 @@ export default class HomeView extends Component {
               })}
             </div>
           </div>
-          <div className="row mt-5 mb-3">
+          <div className="row mt-5 mb-3 mx-1 mx-0-md">
             <div className="offset-md-1 col-md-10 border border-dark">
               <h5 className="text-uppercase my-3">contacts</h5>
             </div>
