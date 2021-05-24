@@ -9,7 +9,25 @@ import collectionIconAdd from "../assets/collection-add.svg";
 const CollectionView = () => {
   const [collection] = useCollection();
 
-  const csvData = Papa.unparse(collection.map((item) => item.fields));
+  const csvData = Papa.unparse(collection.map((item) => {
+    return {
+      'Title': item.fields['Title ID'],
+      'Summary': item.fields['Summary (limit 500)'],
+      'URL': item.fields['URL'],
+      'Pandemic': item.fields['Pandemic_name'],
+      'Type': item.fields['Type_name'],
+      'Themes': item.fields['Themes_name'],
+      'Tags': item.fields['Tags_name'],
+      'Country': item.fields['Country_name'],
+      'Location': item.fields['Location_name'],
+      'Language': item.fields['Language_name'],
+      'Credits': item.fields['Language_name'],
+      'Created': item.fields['Production date'],
+      'Published': item.fields['Publishing date'],
+      'Contributor': item.fields['Contributor'],
+      'Attachments': item.fields['Attachments'].map(a=>a.url),
+    }
+  }));
 
   return (
     <div className="collection-view">
