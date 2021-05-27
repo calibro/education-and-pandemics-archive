@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState, useMemo } from "react";
-import ReactMapGL, { Source, Layer } from "react-map-gl";
+import { useState } from "react";
 import "./ResourcesMap.sass";
 import ResourcesGrid from "./ResourcesGrid";
 import CountriesMap from "./maps/CountriesMap";

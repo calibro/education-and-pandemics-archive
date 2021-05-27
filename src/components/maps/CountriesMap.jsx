@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useEffect, useState, useMemo } from "react";
-
 import ReactMapGL, { Source, Layer } from "react-map-gl";
 import _ from "lodash";
 import { countriesLayer } from "./layers";

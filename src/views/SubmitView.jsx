@@ -13,8 +13,9 @@ const SubmitView = () => {
             <div className="text-center my-5">
               <a
                 className="btn btn-lg btn-outline-primary text-uppercase"
-                href="/"
+                href="https://airtable.com/shrJkmXkg9D7FRXT7"
                 role="button"
+                target="_blank"
               >
                 submit
               </a>
