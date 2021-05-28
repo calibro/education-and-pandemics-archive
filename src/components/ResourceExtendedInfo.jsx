@@ -7,6 +7,21 @@ import ReactTooltip from 'react-tooltip';
 import collectionIconAdd from '../assets/collection-add.svg';
 import collectionIconSaved from '../assets/collection-active.svg';
 
+let formatData = (value, granularity) => {
+  let d =  moment(value, "YYYY-MM-DD")
+  switch(granularity) {
+    case 'day':
+      return d.format('DD/MM/YYYY')
+    case 'month':
+      return d.format('MM/YYYY')
+    case 'year':
+      return d.format('YYYY')
+    default:
+      return d.format('DD/MM/YYYY')
+  }
+ 
+}
+
 const ResourceExtendedInfo = ({resource}) => {
 
   let infoFields = [{
@@ -44,17 +59,17 @@ const ResourceExtendedInfo = ({resource}) => {
     {
     field: 'Production date',
     label: 'Created',
-    format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+    format: (v, fields) => v ? formatData(v, fields['Granularity production date']) : ''
     },
     {
     field: 'Publishing date',
     label: 'Published',
-    format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+    format: (v, fields) => v ? formatData(v, fields['Granularity publishing date']) : ''
     },
     {
     field: 'Added in the archive (YYYY-MM-DD)',
     label: 'Archived',
-    format: (v) => v ? moment(v, "YYYY-MM-DD").format('DD/MM/YYYY') : ''
+    format: (v, fields) => v ? formatData(v, 'day') : ''
     },
     {
     field: 'Contributor',
@@ -100,7 +115,7 @@ const ResourceExtendedInfo = ({resource}) => {
                 return <div className="meta-row" key={info.field}>
                   <div className="meta-title">{info.label}</div>
                   <div className="meta-value">{
-                    info.format ? info.format(resource.fields[info.field]) : (
+                    info.format ? info.format(resource.fields[info.field], resource.fields) : (
                       Array.isArray(resource.fields[info.field]) ? resource.fields[info.field].join(', ') : (resource.fields[info.field] || '/')
                     )}
                   </div>
