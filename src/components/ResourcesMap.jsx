@@ -55,7 +55,7 @@ function ResourcesMap({ archiveItems }) {
             </label>
           </div>
           <div className="resource-list h-100 overflow-auto flex-grow-1 flex-shrink-1">
-            <ResourcesGrid archiveItems={filteredItems}></ResourcesGrid>
+            <ResourcesGrid archiveItems={filteredItems} tagField={mapType === "locations" ? 'Location_name' : 'Country_name'}></ResourcesGrid>
           </div>
         </div>
       </div>

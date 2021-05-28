@@ -5,7 +5,7 @@ import docPlaceholder from "../assets/resource-placeholder-doc.svg";
 import audioPlaceholder from "../assets/resource-placeholder-audio.svg";
 import webPlaceholder from "../assets/resource-placeholder-web.svg";
 
-const ResourceCard = ({ item, flick, fixedWidth }) => {
+const ResourceCard = ({ item, flick, fixedWidth, tagField }) => {
   const history = useHistory();
 
   function handleClick() {
@@ -47,13 +47,16 @@ const ResourceCard = ({ item, flick, fixedWidth }) => {
   // if (pandemics.length > 30) {
   //   pandemics = pandemics.substring(0, 27) + " (...)";
   // }
-
+  let tag = tagField && item.fields[tagField]
   return (
     <div
       className="resource-card d-flex flex-column p-2 overflow-hidden"
       style={{ width: fixedWidth ? 300 : "auto" }}
       onClick={handleClick}
     >
+      {tag && (
+        <div className="resource-tag badge rounded-pill text-body me-2 mb-3">{tag}</div>
+      )}
       <img
         src={resourceImage}
         className="resource-card-img h-50 mb-3"
