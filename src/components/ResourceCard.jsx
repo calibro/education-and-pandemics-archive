@@ -2,6 +2,8 @@ import "./ResourceCard.sass";
 import { useHistory } from "react-router-dom";
 
 import docPlaceholder from "../assets/resource-placeholder-doc.svg";
+import audioPlaceholder from "../assets/resource-placeholder-audio.svg";
+import webPlaceholder from "../assets/resource-placeholder-web.svg";
 
 const ResourceCard = ({ item, flick, fixedWidth }) => {
   const history = useHistory();
@@ -12,10 +14,27 @@ const ResourceCard = ({ item, flick, fixedWidth }) => {
     }
   }
 
-  const resourceImage =
-    item.fields.Attachments && item.fields.Attachments.length > 0
-      ? item.fields.Attachments[0].thumbnails.large.url
-      : docPlaceholder;
+  let resourceImage
+  if(item.fields.Attachments && item.fields.Attachments.length > 0) {
+    resourceImage = item.fields.Attachments[0].thumbnails.large.url
+  } else {
+    if(item.fields.Type_name && item.fields.Type_name.length > 0){
+      switch(item.fields.Type_name[0]) {
+        case 'Website':
+          resourceImage = webPlaceholder
+          break
+        case 'Podcast':
+          resourceImage = audioPlaceholder
+          break
+        // Here we can add more doc placeholer if available
+        default:
+          resourceImage = docPlaceholder
+      }
+    } else {
+      resourceImage = docPlaceholder
+    }
+  }
+
 
   let title = item.fields["Title ID"];
   // if (title.length > 60) {
