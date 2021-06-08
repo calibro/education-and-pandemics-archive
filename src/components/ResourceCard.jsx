@@ -14,27 +14,26 @@ const ResourceCard = ({ item, flick, fixedWidth, tagField }) => {
     }
   }
 
-  let resourceImage
-  if(item.fields.Attachments && item.fields.Attachments.length > 0) {
-    resourceImage = item.fields.Attachments[0].thumbnails.large.url
+  let resourceImage;
+  if (item.fields.Attachments && item.fields.Attachments.length > 0) {
+    resourceImage = item.fields.Attachments[0].thumbnails.large.url;
   } else {
-    if(item.fields.Type_name && item.fields.Type_name.length > 0){
-      switch(item.fields.Type_name[0]) {
-        case 'Website':
-          resourceImage = webPlaceholder
-          break
-        case 'Podcast':
-          resourceImage = audioPlaceholder
-          break
+    if (item.fields.Type_name && item.fields.Type_name.length > 0) {
+      switch (item.fields.Type_name[0]) {
+        case "Website":
+          resourceImage = webPlaceholder;
+          break;
+        case "Podcast":
+          resourceImage = audioPlaceholder;
+          break;
         // Here we can add more doc placeholer if available
         default:
-          resourceImage = docPlaceholder
+          resourceImage = docPlaceholder;
       }
     } else {
-      resourceImage = docPlaceholder
+      resourceImage = docPlaceholder;
     }
   }
-
 
   let title = item.fields["Title ID"];
   // if (title.length > 60) {
@@ -47,15 +46,17 @@ const ResourceCard = ({ item, flick, fixedWidth, tagField }) => {
   // if (pandemics.length > 30) {
   //   pandemics = pandemics.substring(0, 27) + " (...)";
   // }
-  let tag = tagField && item.fields[tagField]
+  let tag = tagField && item.fields[tagField];
   return (
     <div
       className="resource-card d-flex flex-column p-2 overflow-hidden"
-      style={{ width: fixedWidth ? 300 : "auto" }}
+      style={{ width: fixedWidth ? 235 : "auto" }}
       onClick={handleClick}
     >
       {tag && (
-        <div className="resource-tag badge rounded-pill text-body me-2 mb-3">{tag}</div>
+        <div className="resource-tag badge rounded-pill text-body me-2 mb-3">
+          {tag}
+        </div>
       )}
       <img
         src={resourceImage}
