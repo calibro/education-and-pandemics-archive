@@ -141,7 +141,12 @@ const ResourceExtendedInfo = ({ resource }) => {
         })}
       </div>
       {resource.fields["URL"] && (
-        <a className="resource-source" href={resource.fields["URL"]}>
+        <a
+          className="resource-source"
+          href={resource.fields["URL"]}
+          target="_blank"
+          rel="noreferrer"
+        >
           <AnimatedLink text="GO TO SOURCE"></AnimatedLink>
         </a>
       )}

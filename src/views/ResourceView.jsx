@@ -145,7 +145,6 @@ const ResourceView = ({ resourceId }) => {
             />
           );
         } else {
-          console.log(resource.fields["URL"]);
           resourceContent = (
             <>
               <img
@@ -154,7 +153,12 @@ const ResourceView = ({ resourceId }) => {
               ></img>
               {resource.fields["URL"] && (
                 <div className="overlay">
-                  <a className="resource-source" href={resource.fields["URL"]}>
+                  <a
+                    className="resource-source"
+                    href={resource.fields["URL"]}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <AnimatedLink text="GO TO SOURCE"></AnimatedLink>
                   </a>
                 </div>

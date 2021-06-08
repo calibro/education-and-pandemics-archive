@@ -71,10 +71,13 @@ export default class HomeView extends Component {
               {data.sources.links.map((link) => {
                 return (
                   <div key={link.title} className="mt-2">
-                    <a href={link.url} target="_blank">
-                      {link.title}
-                    </a>
-                    <p>{link.desc}</p>
+                    <p>
+                      {link.desc}
+                      {". "}
+                      <a href={link.url} target="_blank">
+                        {link.title}
+                      </a>
+                    </p>
                   </div>
                 );
               })}
@@ -92,7 +95,7 @@ export default class HomeView extends Component {
                 {data.contacts.people.map((person) => {
                   return (
                     <div
-                      className="col-md-3 mb-2 border-end-responsive"
+                      className="col-md-4 mb-2 border-end-responsive"
                       key={person.title}
                     >
                       <h6>{person.title}</h6>
