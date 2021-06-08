@@ -5,10 +5,6 @@ import _ from "lodash";
 import { countriesLayer } from "./layers";
 import countries from "../../assets/geojson/countries.geo.json";
 
-countries.features.forEach((d) => {
-  d.id = d.properties.ISO_A3;
-});
-
 function makeCountrGeoJSON(items) {
   const countriesWithData = _.uniq(items.map((i) => i.fields["Country_a3"][0]));
   let geojson = {
