@@ -3,6 +3,9 @@
   thead
     tr
       th
+        &:nth-child(1n+4)
+          display: none
+      th
         overflow: hidden
         position: sticky
         box-shadow: -6px 0 #FBFAF7, 6px 0 #FBFAF7, 0 7px 5px 0px rgba(0, 0, 0, 0.15)
@@ -27,6 +30,22 @@
         background: #F3EFE6
       td
         padding: 5px
+      td
+        &:nth-child(1n+4)
+          display: none
 
 .reverse
   transform: rotate(180deg)
+
+@media (min-width: 768px)
+  .resource-table
+    thead
+      tr
+        th
+          &:nth-child(1n+4)
+            display: table-cell
+    tbody
+      tr
+        td
+          &:nth-child(1n+4)
+            display: table-cell
