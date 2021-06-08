@@ -48,33 +48,37 @@ export default class HomeView extends Component {
             <div className="col-12 col-md-6">
               <div className="logo-block p-3 p-md-5 border-dark">
                 <img src={logo} alt="logo" className="img-fluid mb-4" />
-                <div>
-                  <h3 className="text-black-50">
-                    Web Archive on Educations and Pandemics: Past and Present
-                  </h3>
-                </div>
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <div className="about-block d-flex flex-column h-100">
-                <Link
-                  to="/explore"
-                  className="big-link border-bottom border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
-                >
-                  <AnimatedLink text="EXPLORE THE ARCHIVE"></AnimatedLink>
-                </Link>
-                <Link
-                  to="/about"
-                  className="big-link border-bottom border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
-                >
-                  <AnimatedLink text="DISCOVER THE PROJECT"></AnimatedLink>
-                </Link>
-                <a
-                  href="#"
-                  className="big-link flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
-                >
-                  <AnimatedLink text="CONTRIBUTE TO THE ARCHIVE"></AnimatedLink>
-                </a>
+              <div className="d-flex flex-column h-100">
+                <p className="lead m-3 m-md-5">
+                  Welcome to the Education Pandemics Archive. We invite you to
+                  explore and collect various items related to education and
+                  health crises. Share your ideas and reflect on new ways of
+                  studying the history of education and pandemics with us – from
+                  past, to present, and by imagining future histories.
+                </p>
+                <div className="about-block d-flex flex-column flex-md-row mt-auto">
+                  <Link
+                    to="/explore"
+                    className="big-link border-top   border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
+                  >
+                    <AnimatedLink text="EXPLORE"></AnimatedLink>
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="big-link border-top border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
+                  >
+                    <AnimatedLink text="ABOUT"></AnimatedLink>
+                  </Link>
+                  <a
+                    href="#"
+                    className="big-link border-top border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
+                  >
+                    <AnimatedLink text="SUBMIT"></AnimatedLink>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

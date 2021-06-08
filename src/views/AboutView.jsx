@@ -21,9 +21,6 @@ export default class HomeView extends Component {
           <div className="row">
             <div className="col-12 offset-0 offset-md-1 col-md-6">
               <img src={logo} alt="logo" className="img-fluid mb-4 mt-5" />
-              <h3 className="text-black-50">
-                Web Archive on Educations and Pandemics: Past and Present
-              </h3>
             </div>
           </div>
           <div className="row">
