@@ -36,6 +36,23 @@ const SubmitView = () => {
               })}
             </div>
           </div>
+          <div className="offset-0 offset-md-1 col-12 col-md-10 mt-5">
+            <h4 className="text-uppercase border border-dark m-0 p-3">
+              {data.expect.title}
+            </h4>
+            <div className="row g-0">
+              {data.expect.sections.map((section) => {
+                return (
+                  <div
+                    className="col-12 border-bottom border-end border-start border-dark p-3"
+                    key={section.title}
+                  >
+                    <p>{section}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </div>

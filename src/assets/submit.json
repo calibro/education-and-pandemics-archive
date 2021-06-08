@@ -18,5 +18,15 @@
             {"title":"Video", "description": "Videos are visual media featuring moving images, with or without audio. Recently, most videos are recorded and saved digitally in formats such as MP4. Many videos are hosted on Youtube, Vimeo or the Internet Archive. We ask you to provide the links to these videos that would enrich our archive. However, we are also interested in videos that are not hosted on any of these platforms."}, 
             {"title":"Website", "description": "A website is a set or collection of related web pages located under a single domain name. Website can be called up as individual webpages on the web with a browser (e.g., Chrome). Alongside texts, websites also include visual media such as photographs, videos, and other files."}
         ]
+    },
+    "expect":{
+        "title":"What to expect",
+        "sections":[
+            "Once you have submitted the form, it will be forwarded to the team responsible for the back end of the web archive.",
+            "At the back end (and according to your suggestions), we add metadata to the content submitted, which implies linking it to overarching themes and keywords (tags) and making sure that content is either archived in the way back machine (http://web.archive.org/) or in conifer (https://conifer.rhizome.org/) to secure permanent accessibility.",
+            "The back end team (double) checks your entries, adds information if necessary, and/or might have to start further enquiry should something be unclear. In such a probably rare case, you would receive an email from the back end team.",
+            "The back end work can take time as the team is very accurate with checking, archiving, and tagging submissions. So we ask you to be patient when you are on the lookout for your source in our archive.",
+            "When everything is checked, your entry will be released for publication on the archive website."
+        ]
     }
 }
