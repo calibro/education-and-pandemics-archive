@@ -5,6 +5,7 @@ import { Spinner } from "react-bootstrap";
 import * as embedUtils from "../utils/embed";
 import ResourceExtendedInfo from "../components/ResourceExtendedInfo";
 import RelatedResources from "../components/RelatedResources";
+import AnimatedLink from "../components/commons/AnimatedLink";
 import { useHistory } from "react-router-dom";
 
 import arrow from "../assets/arrow.svg";
@@ -144,11 +145,21 @@ const ResourceView = ({ resourceId }) => {
             />
           );
         } else {
+          console.log(resource.fields["URL"]);
           resourceContent = (
-            <img
-              src={resource.fields["Attachments"][0].url}
-              alt={resource.fields["Title ID"]}
-            ></img>
+            <>
+              <img
+                src={resource.fields["Attachments"][0].url}
+                alt={resource.fields["Title ID"]}
+              ></img>
+              {resource.fields["URL"] && (
+                <div className="overlay">
+                  <a className="resource-source" href={resource.fields["URL"]}>
+                    <AnimatedLink text="GO TO SOURCE"></AnimatedLink>
+                  </a>
+                </div>
+              )}
+            </>
           );
         }
       }

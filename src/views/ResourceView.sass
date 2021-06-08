@@ -101,3 +101,32 @@
         align-items: center
         span
           margin: 0.35em
+
+.overlay
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 20px
+  right: 20px
+  background: rgba(0,0,0,0.2)
+  opacity: 0
+  transition: opacity 0.3s
+  display: flex
+  align-items: center
+  justify-content: center
+
+.overlay:hover
+  opacity: 1
+
+.resource-source
+  display: flex
+  height: 76px
+  width: 50%
+  justify-content: center
+  align-items: center
+  color: #000000
+  text-decoration: none
+  border-left: 1px solid #000000
+  border-right: 1px solid #000000
+  border-bottom: 1px solid #000000
+  background-color: #FBFAF7
