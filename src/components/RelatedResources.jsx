@@ -20,7 +20,7 @@ const RelatedResources = ({ resource }) => {
 
   const [typesOptions, setTypesOptions] = useState([]);
 
-  if (typesOptions.length == 0) {
+  if (typesOptions.length === 0) {
     base("Type list")
       .select({
         view: "Grid view",

@@ -29,15 +29,12 @@ const FilterSecondarySidebar = ({ open, width, children, title, onClose }) => {
     open && onClose();
   });
 
-  const left = open ? `${width}px` : "0px";
   return (
     <React.Fragment>
       <div
         ref={clickRef}
         className={`secondary-sidebar ${open ? "open" : ""}`}
         style={{
-          //left: left,
-          //transform: `translatex(${xPosition}px)`,
           width: `${width}px`,
         }}
       >

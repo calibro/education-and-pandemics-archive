@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useState, useMemo } from "react";
 import ReactMapGL, { Source, Layer } from "react-map-gl";
-import _ from "lodash";
 import {
   clusterLayer,
   clusterCountLayer,
@@ -35,20 +34,20 @@ function LocationsMap({ archiveItems, onUpdate, parentRef }) {
   let map = React.createRef();
 
   const [viewport, setViewport] = useState({
-    zoom: 1
+    zoom: 1,
   });
 
   const [size, setSize] = useState({
-    width: '100%',
-    height: '100%'
+    width: "100%",
+    height: "100%",
   });
 
   React.useEffect(() => {
     window.addEventListener("resize", () => {
       setSize({
-        width: parentRef.current ? parentRef.current.clientWidth: "100%",
-        height: parentRef.current ? parentRef.current.clientHeight: "100%"
-      })
+        width: parentRef.current ? parentRef.current.clientWidth : "100%",
+        height: parentRef.current ? parentRef.current.clientHeight : "100%",
+      });
     });
   }, []);
 
@@ -66,7 +65,7 @@ function LocationsMap({ archiveItems, onUpdate, parentRef }) {
     if (map.current) {
       var features = map.current.queryRenderedFeatures();
       let visibleResIds = features
-        .filter((f) => f.layer.id == ghostPoints.id)
+        .filter((f) => f.layer.id === ghostPoints.id)
         .map((f) => f.properties.id);
       onUpdate(itemsWithLocation.filter((i) => visibleResIds.includes(i.id)));
     }

@@ -73,7 +73,7 @@ export default class HomeView extends Component {
                     <AnimatedLink text="ABOUT"></AnimatedLink>
                   </Link>
                   <a
-                    href="#"
+                    href="/submit"
                     className="big-link border-top border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
                   >
                     <AnimatedLink text="SUBMIT"></AnimatedLink>

@@ -16,6 +16,7 @@ const SubmitView = () => {
                 href="https://airtable.com/shrJkmXkg9D7FRXT7"
                 role="button"
                 target="_blank"
+                rel="noreferrer"
               >
                 submit
               </a>
@@ -25,6 +26,11 @@ const SubmitView = () => {
             <h4 className="text-uppercase border border-dark m-0 p-3">
               {data.guidelines.title}
             </h4>
+            <ul className="border-bottom border-start border-end border-dark mb-0 p-3 ps-5">
+              {data.before.map((d) => {
+                return <li>{d}</li>;
+              })}
+            </ul>
             <div className="row g-0">
               {data.guidelines.sections.map((section) => {
                 return (
@@ -47,7 +53,7 @@ const SubmitView = () => {
                     className="col-12 border-bottom border-end border-start border-dark p-3"
                     key={section.title}
                   >
-                    <p>{section}</p>
+                    <p className="m-0">{section}</p>
                   </div>
                 );
               })}

@@ -34,16 +34,16 @@ function CountriesMap({ archiveItems, onUpdate, parentRef }) {
   });
 
   const [size, setSize] = useState({
-    width: '100%',
-    height: '100%'
+    width: "100%",
+    height: "100%",
   });
 
   React.useEffect(() => {
     window.addEventListener("resize", () => {
       setSize({
-        width: parentRef.current ? parentRef.current.clientWidth: "100%",
-        height: parentRef.current ? parentRef.current.clientHeight: "100%"
-      })
+        width: parentRef.current ? parentRef.current.clientWidth : "100%",
+        height: parentRef.current ? parentRef.current.clientHeight : "100%",
+      });
     });
   }, []);
 

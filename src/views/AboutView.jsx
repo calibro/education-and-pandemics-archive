@@ -70,11 +70,11 @@ export default class HomeView extends Component {
             <div className="col-md-5 border border-top-0 border-dark">
               {data.sources.links.map((link) => {
                 return (
-                  <div key={link.title} className="mt-2">
+                  <div key={link.desc} className="mt-2">
                     <p>
                       {link.desc}
                       {". "}
-                      <a href={link.url} target="_blank">
+                      <a href={link.url} target="_blank" rel="noreferrer">
                         {link.title}
                       </a>
                     </p>

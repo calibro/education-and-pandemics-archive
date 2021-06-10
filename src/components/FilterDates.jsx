@@ -1,22 +1,24 @@
-import * as React from 'react';
-import { useQueryParam, StringParam, NumberParam } from 'use-query-params';
-import Select from 'react-select'
-import DatePicker from 'react-datepicker'
+import * as React from "react";
+import { useQueryParam, NumberParam } from "use-query-params";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const FilterDates = () => {
-  const [startDate, setStartDate] = useQueryParam('dateFrom', NumberParam);
-  const [endDate, setEndDate] = useQueryParam('dateTo', NumberParam);
-
+  const [startDate, setStartDate] = useQueryParam("dateFrom", NumberParam);
+  const [endDate, setEndDate] = useQueryParam("dateTo", NumberParam);
 
   const onChangeStart = (date) => {
-    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : undefined
-    setStartDate(v)
-  }
+    let v = date
+      ? Date.UTC(date.getUTCFullYear(), date.getUTCMonth())
+      : undefined;
+    setStartDate(v);
+  };
   const onChangeEnd = (date) => {
-    let v = date? Date.UTC(date.getUTCFullYear(), date.getUTCMonth()) : undefined
-    setEndDate(v)
-  }
+    let v = date
+      ? Date.UTC(date.getUTCFullYear(), date.getUTCMonth())
+      : undefined;
+    setEndDate(v);
+  };
 
   return (
     <div className="filter-dates">
@@ -25,7 +27,7 @@ const FilterDates = () => {
         <label>From</label>
         <DatePicker
           selected={startDate}
-          onChange={date => onChangeStart(date)}
+          onChange={(date) => onChangeStart(date)}
           dateFormat="MM/yyyy"
           placeholderText="Month / Year"
           showMonthYearPicker
@@ -35,7 +37,7 @@ const FilterDates = () => {
         <label>To</label>
         <DatePicker
           selected={endDate}
-          onChange={date => onChangeEnd(date)}
+          onChange={(date) => onChangeEnd(date)}
           dateFormat="MM/yyyy"
           placeholderText="Month / Year"
           showMonthYearPicker

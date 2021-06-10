@@ -85,9 +85,9 @@ const ResourceExtendedInfo = ({ resource }) => {
       setCollection((c) => {
         let collectionCopy = JSON.parse(JSON.stringify(c));
 
-        if (collectionCopy.find((item) => item.id == resource.id)) {
+        if (collectionCopy.find((item) => item.id === resource.id)) {
           collectionCopy.splice(
-            collectionCopy.findIndex((item) => item.id == resource.id),
+            collectionCopy.findIndex((item) => item.id === resource.id),
             1
           );
         } else {

@@ -8,22 +8,22 @@ import LocationsMap from "./maps/LocationsMap";
 function ResourcesMap({ archiveItems }) {
   const [mapType, setMapType] = useState("countries");
   const [filteredItems, setFilteredItems] = useState(archiveItems);
-  
-  let mapContainerRef = React.useRef()
+
+  let mapContainerRef = React.useRef();
 
   //map.current && map.current.on('move', onMapMove)
   return (
     <div className="resource-map d-flex position-relative overflow-hidden flex-grow-1 flex-shrink-1 border-top border-dark">
       <div className="row g-0 w-100">
         <div className="col-12 col-md-8 map-container" ref={mapContainerRef}>
-          {mapType == "locations" && (
+          {mapType === "locations" && (
             <LocationsMap
               archiveItems={archiveItems}
               onUpdate={setFilteredItems}
               parentRef={mapContainerRef}
             ></LocationsMap>
           )}
-          {mapType == "countries" && (
+          {mapType === "countries" && (
             <CountriesMap
               archiveItems={archiveItems}
               onUpdate={setFilteredItems}
@@ -59,7 +59,12 @@ function ResourcesMap({ archiveItems }) {
             </label>
           </div>
           <div className="resource-list h-100 overflow-auto flex-grow-1 flex-shrink-1">
-            <ResourcesGrid archiveItems={filteredItems} tagField={mapType === "locations" ? 'Location_name' : 'Country_name'}></ResourcesGrid>
+            <ResourcesGrid
+              archiveItems={filteredItems}
+              tagField={
+                mapType === "locations" ? "Location_name" : "Country_name"
+              }
+            ></ResourcesGrid>
           </div>
         </div>
       </div>

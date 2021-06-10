@@ -127,9 +127,12 @@ export default class ExploreView extends Component {
   }
   renderParamsRecap() {
     return Object.keys(this.props.params)
-      .filter((filterKey) => filterKey != "search")
+      .filter((filterKey) => filterKey !== "search")
       .map((filterKey) => (
-        <CurrentFiltersRecap filterKey={filterKey} filters={this.props.filters}></CurrentFiltersRecap>
+        <CurrentFiltersRecap
+          filterKey={filterKey}
+          filters={this.props.filters}
+        ></CurrentFiltersRecap>
       ));
   }
   renderCurrentViewType() {

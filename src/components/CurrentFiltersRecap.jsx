@@ -19,12 +19,12 @@ const CurrentFiltersRecap = ({ filterKey, filters }) => {
       displayValue = moment(+value).format("MM/YYYY");
     }
     if (filterKey.indexOf("_id") >= 0) {
-      let key = filterKey.replace("_id", "").toLowerCase()
-      let item = filters[key] && filters[key].find(e => e.id == value)
+      let key = filterKey.replace("_id", "").toLowerCase();
+      let item = filters[key] && filters[key].find((e) => e.id === value);
       if (item) {
-        displayValue = item.fields['Label']
-      }else {
-        displayValue = ''
+        displayValue = item.fields["Label"];
+      } else {
+        displayValue = "";
       }
     }
     return (
