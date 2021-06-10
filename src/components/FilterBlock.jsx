@@ -18,7 +18,8 @@ const FilterBlock = (props) => {
   return (
     <div className="filter-list">
         {props.filterItems.map(filter =>{
-          const val = filter.fields[props.labelBy]
+          const val = filter.fields[props.valueBy] || filter.fields[props.labelBy]
+          const label = filter.fields[props.labelBy]
           const isSelected = paramsArray.includes(val)
            return (
              <label className={`filter-list-item ${isSelected ? "checked" : " "}`}>
@@ -28,7 +29,7 @@ const FilterBlock = (props) => {
                 value={val} 
                 onChange={() => onChange(val)}
                 ></input>
-                {val} ({filter.fields['Count']})
+                {label} ({filter.fields['Count']})
              </label>
            )
         })}

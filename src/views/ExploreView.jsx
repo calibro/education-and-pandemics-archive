@@ -92,7 +92,7 @@ export default class ExploreView extends Component {
           formulas.push(
             "OR(" +
               filterVal
-                .map((v) => 'FIND("' + v + '",{' + paramKey + "})")
+                .map((v) => 'FIND("' + v + '",{' + paramKey + '} & "")')
                 .join(", ") +
               ")"
           );
@@ -129,7 +129,7 @@ export default class ExploreView extends Component {
     return Object.keys(this.props.params)
       .filter((filterKey) => filterKey != "search")
       .map((filterKey) => (
-        <CurrentFiltersRecap filterKey={filterKey}></CurrentFiltersRecap>
+        <CurrentFiltersRecap filterKey={filterKey} filters={this.props.filters}></CurrentFiltersRecap>
       ));
   }
   renderCurrentViewType() {

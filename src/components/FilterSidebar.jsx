@@ -96,8 +96,9 @@ export default class ResourceCard extends Component {
         return (
           <FilterBlock
             blockTitle="Tags"
-            filterName="Tags"
+            filterName="Tags_id"
             labelBy="Tag"
+            valueBy="ID"
             filterItems={this.props.filters.tags}
           ></FilterBlock>
         );
@@ -105,8 +106,9 @@ export default class ResourceCard extends Component {
         return (
           <FilterBlock
             blockTitle="Languages"
-            filterName="Language"
+            filterName="Languages_id"
             labelBy="Language"
+            valueBy="ID"
             filterItems={this.props.filters.languages}
           ></FilterBlock>
         );
