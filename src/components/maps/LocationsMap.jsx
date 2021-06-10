@@ -31,14 +31,26 @@ function makeLocationsGeoJSON(items) {
   };
 }
 
-function LocationsMap({ archiveItems, onUpdate }) {
+function LocationsMap({ archiveItems, onUpdate, parentRef }) {
   let map = React.createRef();
 
   const [viewport, setViewport] = useState({
-    width: "100%",
-    height: "100%",
-    zoom: 1,
+    zoom: 1
   });
+
+  const [size, setSize] = useState({
+    width: '100%',
+    height: '100%'
+  });
+
+  React.useEffect(() => {
+    window.addEventListener("resize", () => {
+      setSize({
+        width: parentRef.current ? parentRef.current.clientWidth: "100%",
+        height: parentRef.current ? parentRef.current.clientHeight: "100%"
+      })
+    });
+  }, []);
 
   const itemsWithLocation = archiveItems.filter(
     (i) =>
@@ -70,6 +82,7 @@ function LocationsMap({ archiveItems, onUpdate }) {
     <ReactMapGL
       ref={map}
       {...viewport}
+      {...size}
       onTransitionEnd={onMapMove}
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
       interactiveLayerIds={[ghostPoints.id]}
