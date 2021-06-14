@@ -154,7 +154,7 @@ const ResourceView = ({ resourceId }) => {
               {resource.fields["URL"] && (
                 <div className="overlay">
                   <a
-                    className="resource-source"
+                    className="resource-source border border-dark"
                     href={resource.fields["URL"]}
                     target="_blank"
                     rel="noreferrer"

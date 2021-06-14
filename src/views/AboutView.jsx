@@ -13,6 +13,9 @@ const icons = {
   exportIcon,
 };
 
+function createMarkup(html) {
+  return { __html: html };
+}
 export default class HomeView extends Component {
   render() {
     return (
@@ -25,7 +28,10 @@ export default class HomeView extends Component {
           </div>
           <div className="row">
             <div className="offset-md-1 col-md-7 border-end-responsive">
-              <p className="lead mt-3">{data.intro}</p>
+              <div
+                className="lead mt-3"
+                dangerouslySetInnerHTML={createMarkup(data.intro)}
+              />
             </div>
 
             <div className="col-md-3">

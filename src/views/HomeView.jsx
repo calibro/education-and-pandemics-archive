@@ -46,7 +46,7 @@ export default class HomeView extends Component {
         <div className="container-fluid p-0">
           <div className="row border-bottom border-dark g-0">
             <div className="col-12 col-md-6">
-              <div className="logo-block p-3 p-md-5 border-dark">
+              <div className="logo-block h-100 p-3 p-md-5 border-dark">
                 <img src={logo} alt="logo" className="img-fluid mb-4" />
               </div>
             </div>
