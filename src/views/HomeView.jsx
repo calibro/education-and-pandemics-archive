@@ -53,9 +53,9 @@ export default class HomeView extends Component {
             <div className="col-12 col-md-6">
               <div className="d-flex flex-column h-100">
                 <p className="lead m-3 m-md-5">
-                  Welcome to the Education Pandemics Archive. We invite you to
-                  explore and collect various items related to education and
-                  health crises. Share your ideas and reflect on new ways of
+                  Welcome to the Education &amp; Pandemics Archive. We invite
+                  you to explore and collect various items related to education
+                  and health crises. Share your ideas and reflect on new ways of
                   studying the history of education and pandemics with us – from
                   past, to present, and by imagining future histories.
                 </p>
@@ -72,12 +72,12 @@ export default class HomeView extends Component {
                   >
                     <AnimatedLink text="ABOUT"></AnimatedLink>
                   </Link>
-                  <a
-                    href="/submit"
+                  <Link
+                    to="/submit"
                     className="big-link border-top border-dark flex-grow-1 flex-shrink-1 d-flex align-items-center justify-content-center"
                   >
                     <AnimatedLink text="SUBMIT"></AnimatedLink>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
