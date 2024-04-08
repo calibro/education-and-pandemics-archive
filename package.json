@@ -1,6 +1,6 @@
 {
   "name": "ische-pandemic-archive",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "private": true,
   "homepage": "https://www.ische.org/education-and-pandemics-archive",
   "dependencies": {
